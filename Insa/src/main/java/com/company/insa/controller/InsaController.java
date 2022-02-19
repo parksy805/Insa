@@ -14,6 +14,8 @@ public class InsaController {
 	
 	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
 	public String testfn(Model m) {
+		String str = insaServiceImpl.testfn();
+		System.out.println("testfn() : " + insaServiceImpl.testfn());
 		m.addAttribute("testfn", insaServiceImpl.testfn());
 		return "main";
 	}
