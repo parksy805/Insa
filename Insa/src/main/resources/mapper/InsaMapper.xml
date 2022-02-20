@@ -3,9 +3,9 @@
 <mapper namespace="com.company.insa.controller.InsaDao">
 
 	<select id="testfn" resultType="string">
-	<![CDATA[
-		SELECT COUNT(*) FROM TB_INSA_COM
-	]]>
+		<![CDATA[
+			SELECT COUNT(*) FROM INSA.TB_INSA_COM
+		]]>
 	</select>
 
 </mapper>

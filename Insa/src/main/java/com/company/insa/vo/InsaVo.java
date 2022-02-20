@@ -3,70 +3,59 @@ package com.company.insa.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class InsaVo {
+
+//	*******************************************************
+//	 * DESC : 직원 정보 전역 변수
+//	 * AUTH : 박소영 (개발팀)
+//	 * HIST : 20220220
+//	********************************************************
 	
 	private String agentNo;					//사번
-	private String joinDate;				//입사일
-	private String retireDate;				//퇴사일
-	private String putYn;					//투입여부
 	private String name;					//이름
-	private String regNo;					//주민번호
 	private String engName;					//영어이름
-	private String call;					//전화번호
-	private String phone;					//휴대폰번호
-	private String carrierImgName;			//이력서 파일명
-	private String position;				//직급
-	private String bizRegNo;				//사업자등록번호
-	private String bizName;					//사업자명
-	private String biaRegImgName;			//사업자등록증 파일명
-	private String sex;						//성별
-	private String age;						//나이
-	private String email1;					//이메일 앞
-   	private String email2;					//이메일 뒤
-	private String zip;						//우편번호
-	private String addr1;					//주소1
-	private String addr2;					//상세주소
-	private String dept;					//부서
-	private String status;					//입사,퇴사 여부
 	private String id;						//아이디
 	private String pwd;						//비밀번호
-	private String salary;					//연봉
-	private String kosaYn;					//kosa여부
-	private String kosClass;				//kosa등급
-	private String milYn;					//전역여부
-  	private String milType;					//군대 종류
-   	private String milStartDate;			//입대일
-   	private String milEndDate;				//전역일
+	private String regNo;					//주민번호
+	private String phone;					//휴대폰
+	private String call;					//전화번호
+	private String age;						//나이
+	private String sex;						//성별
+	private String email1;					//이메일 앞
+   	private String email2;					//이메일 뒤
+   	private String zip;						//우편번호
+	private String addr1;					//도로명주소
+	private String addr2;					//상세주소
+	private String status;					//입사구분
+	private String dept;					//부서
+	private String position;				//직위
     private String jotType;					//직종
    	private String grdLevel;				//최종학력
-	private String selfIntro;				//인사말
+	private String salary;					//연봉
+	private String joinDate;				//입사일
+	private String retireDate;				//퇴사일
+	private String milYn;					//입대여부
+  	private String milType;					//군별
+   	private String milStartDate;			//입대일
+   	private String milEndDate;				//제대일
+	private String kosaYn;					//kosa여부
+	private String kosClass;				//kosa등급
+	private String bizRegNo;				//사업자등록번호
+	private String bizName;					//사업자업체명
+	private String biaRegImgName;			//사업자등록증 파일명
+	private String selfIntro;				//자기소개
+	private String carrierImgName;			//이력서 파일명
 	private String profileImgName;			//증명사진 파일명
 	private MultipartFile profileImg;
 	private MultipartFile careerImg;
 	private MultipartFile bizRegImg;
+	
 	//getter,setter,toString생성
+	
 	public String getAgentNo() {
 		return agentNo;
 	}
 	public void setAgentNo(String agentNo) {
 		this.agentNo = agentNo;
-	}
-	public String getJoinDate() {
-		return joinDate;
-	}
-	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
-	}
-	public String getRetireDate() {
-		return retireDate;
-	}
-	public void setRetireDate(String retireDate) {
-		this.retireDate = retireDate;
-	}
-	public String getPutYn() {
-		return putYn;
-	}
-	public void setPutYn(String putYn) {
-		this.putYn = putYn;
 	}
 	public String getName() {
 		return name;
@@ -74,23 +63,29 @@ public class InsaVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRegNo() {
-		return regNo;
-	}
-	public void setRegNo(String regNo) {
-		this.regNo = regNo;
-	}
 	public String getEngName() {
 		return engName;
 	}
 	public void setEngName(String engName) {
 		this.engName = engName;
 	}
-	public String getCall() {
-		return call;
+	public String getId() {
+		return id;
 	}
-	public void setCall(String call) {
-		this.call = call;
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getRegNo() {
+		return regNo;
+	}
+	public void setRegNo(String regNo) {
+		this.regNo = regNo;
 	}
 	public String getPhone() {
 		return phone;
@@ -98,47 +93,23 @@ public class InsaVo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getCarrierImgName() {
-		return carrierImgName;
+	public String getCall() {
+		return call;
 	}
-	public void setCarrierImgName(String carrierImgName) {
-		this.carrierImgName = carrierImgName;
-	}
-	public String getPosition() {
-		return position;
-	}
-	public void setPosition(String position) {
-		this.position = position;
-	}
-	public String getBizRegNo() {
-		return bizRegNo;
-	}
-	public void setBizRegNo(String bizRegNo) {
-		this.bizRegNo = bizRegNo;
-	}
-	public String getBizName() {
-		return bizName;
-	}
-	public void setBizName(String bizName) {
-		this.bizName = bizName;
-	}
-	public String getBiaRegImgName() {
-		return biaRegImgName;
-	}
-	public void setBiaRegImgName(String biaRegImgName) {
-		this.biaRegImgName = biaRegImgName;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setCall(String call) {
+		this.call = call;
 	}
 	public String getAge() {
 		return age;
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	public String getEmail1() {
 		return email1;
@@ -170,29 +141,35 @@ public class InsaVo {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public String getDept() {
-		return dept;
-	}
-	public void setDept(String dept) {
-		this.dept = dept;
-	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getId() {
-		return id;
+	public String getDept() {
+		return dept;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getPosition() {
+		return position;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	public String getJotType() {
+		return jotType;
+	}
+	public void setJotType(String jotType) {
+		this.jotType = jotType;
+	}
+	public String getGrdLevel() {
+		return grdLevel;
+	}
+	public void setGrdLevel(String grdLevel) {
+		this.grdLevel = grdLevel;
 	}
 	public String getSalary() {
 		return salary;
@@ -200,17 +177,17 @@ public class InsaVo {
 	public void setSalary(String salary) {
 		this.salary = salary;
 	}
-	public String getKosaYn() {
-		return kosaYn;
+	public String getJoinDate() {
+		return joinDate;
 	}
-	public void setKosaYn(String kosaYn) {
-		this.kosaYn = kosaYn;
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
 	}
-	public String getKosClass() {
-		return kosClass;
+	public String getRetireDate() {
+		return retireDate;
 	}
-	public void setKosClass(String kosClass) {
-		this.kosClass = kosClass;
+	public void setRetireDate(String retireDate) {
+		this.retireDate = retireDate;
 	}
 	public String getMilYn() {
 		return milYn;
@@ -236,23 +213,47 @@ public class InsaVo {
 	public void setMilEndDate(String milEndDate) {
 		this.milEndDate = milEndDate;
 	}
-	public String getJotType() {
-		return jotType;
+	public String getKosaYn() {
+		return kosaYn;
 	}
-	public void setJotType(String jotType) {
-		this.jotType = jotType;
+	public void setKosaYn(String kosaYn) {
+		this.kosaYn = kosaYn;
 	}
-	public String getGrdLevel() {
-		return grdLevel;
+	public String getKosClass() {
+		return kosClass;
 	}
-	public void setGrdLevel(String grdLevel) {
-		this.grdLevel = grdLevel;
+	public void setKosClass(String kosClass) {
+		this.kosClass = kosClass;
+	}
+	public String getBizRegNo() {
+		return bizRegNo;
+	}
+	public void setBizRegNo(String bizRegNo) {
+		this.bizRegNo = bizRegNo;
+	}
+	public String getBizName() {
+		return bizName;
+	}
+	public void setBizName(String bizName) {
+		this.bizName = bizName;
+	}
+	public String getBiaRegImgName() {
+		return biaRegImgName;
+	}
+	public void setBiaRegImgName(String biaRegImgName) {
+		this.biaRegImgName = biaRegImgName;
 	}
 	public String getSelfIntro() {
 		return selfIntro;
 	}
 	public void setSelfIntro(String selfIntro) {
 		this.selfIntro = selfIntro;
+	}
+	public String getCarrierImgName() {
+		return carrierImgName;
+	}
+	public void setCarrierImgName(String carrierImgName) {
+		this.carrierImgName = carrierImgName;
 	}
 	public String getProfileImgName() {
 		return profileImgName;
@@ -280,16 +281,16 @@ public class InsaVo {
 	}
 	@Override
 	public String toString() {
-		return "InsaVo [agentNo=" + agentNo + ", joinDate=" + joinDate + ", retireDate=" + retireDate + ", putYn="
-				+ putYn + ", name=" + name + ", regNo=" + regNo + ", engName=" + engName + ", call=" + call + ", phone="
-				+ phone + ", carrierImgName=" + carrierImgName + ", position=" + position + ", bizRegNo=" + bizRegNo
-				+ ", bizName=" + bizName + ", biaRegImgName=" + biaRegImgName + ", sex=" + sex + ", age=" + age
+		return "InsaVo [agentNo=" + agentNo + ", name=" + name + ", engName=" + engName + ", id=" + id + ", pwd=" + pwd
+				+ ", regNo=" + regNo + ", phone=" + phone + ", call=" + call + ", age=" + age + ", sex=" + sex
 				+ ", email1=" + email1 + ", email2=" + email2 + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", dept=" + dept + ", status=" + status + ", id=" + id + ", pwd=" + pwd + ", salary=" + salary
-				+ ", kosaYn=" + kosaYn + ", kosClass=" + kosClass + ", milYn=" + milYn + ", milType=" + milType
-				+ ", milStartDate=" + milStartDate + ", milEndDate=" + milEndDate + ", jotType=" + jotType
-				+ ", grdLevel=" + grdLevel + ", selfIntro=" + selfIntro + ", profileImgName=" + profileImgName
-				+ ", profileImg=" + profileImg + ", careerImg=" + careerImg + ", bizRegImg=" + bizRegImg + "]";
+				+ ", status=" + status + ", dept=" + dept + ", position=" + position + ", jotType=" + jotType
+				+ ", grdLevel=" + grdLevel + ", salary=" + salary + ", joinDate=" + joinDate + ", retireDate="
+				+ retireDate + ", milYn=" + milYn + ", milType=" + milType + ", milStartDate=" + milStartDate
+				+ ", milEndDate=" + milEndDate + ", kosaYn=" + kosaYn + ", kosClass=" + kosClass + ", bizRegNo="
+				+ bizRegNo + ", bizName=" + bizName + ", biaRegImgName=" + biaRegImgName + ", selfIntro=" + selfIntro
+				+ ", carrierImgName=" + carrierImgName + ", profileImgName=" + profileImgName + ", profileImg="
+				+ profileImg + ", careerImg=" + careerImg + ", bizRegImg=" + bizRegImg + "]";
 	}
 	
 }
