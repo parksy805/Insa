@@ -2,11 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.insa.controller.InsaDao">
 
+
+	
+	
+	
+<!--
+*******************************************************
+ * DESC : 직원 정보 저장
+ * AUTH : 박소영 (개발팀)
+ * HIST : 20220220
+********************************************************
+-->
+	<!-- 사번 생성용 - 부서코드 호출 -->
+	<select id="getAgentNoDeptCode" parameterType="com.company.insa.vo.InsaComVo" resultType="string">
+		<![CDATA[
+			SELECT CODE FROM INSA.TB_INSA_COM WHERE NAME = #{name}
+		 ]]>
+	</select>
+	<!-- 사번 생성용 - 시퀀스 호출 -->
+	<select id="getSeqAgentNo" resultType="string">
+		<![CDATA[
+			SELECT INSA.SEQ_AGENTNO.NEXTVAL FROM DUAL
+		]]>
+	</select>
+	
+	<insert id="agentInsert">
+		<![CDATA[
+			INSERT INTO INSA.TB_INSA
+				(AGENTNO, NAME, ENGNAME, ID, PWD, REGNO, PHONE, CALL, 
+				AGE, SEX, EMAIL, ZIP, ADDR1, ADDR2, 
+				STATUS, DEPT, POSITION, JOBTYPE, 
+				GRDLEVEL, SALARY, JOINDATE, RETIREDATE, 
+				MILYN, MILTYPE, MILSTARTDATE, MILENDDATE, KOSAYN, KOSACLASS, 
+				BIZREGNO, BIZNAME, BIZREGIMGNAME, SELFINTRO, CARRIERIMGNAME, PROFILEIMGNAME)
+			VALUES
+				(#{agentNo}, #{name}, #{engName}, #{id}, #{pwd}, #{regNo}, #{phone}, #{call}, 
+				#{age}, #{sex}, #{email}, #{zip}, #{addr1}, #{addr2}, 
+				#{status}, #{dept}, #{position}, #{jotType}, 
+				#{grdLevel}, #{salary}, #{joinDate}, #{retireDate}, 
+				#{milYn}, #{milType}, #{milStartDate}, #{milEndDate}, #{kosaYn}, #{kosClass},  
+				#{bizRegNo}, #{bizName}, #{biaRegImgName}, #{selfIntro}, #{carrierImgName}, #{profileImgName})
+		]]>
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	<!-- DB 연결 test용 -->
 	<select id="testfn" resultType="string">
 		<![CDATA[
 			SELECT COUNT(*) FROM INSA.TB_INSA_COM
 		]]>
 	</select>
-
 </mapper>
 

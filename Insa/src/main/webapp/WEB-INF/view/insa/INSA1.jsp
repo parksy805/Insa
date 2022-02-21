@@ -16,7 +16,7 @@
 <script src="js/zip.js"></script>
 <!--
 *******************************************************
- * DESC : 직원 정보 조회 화면
+ * DESC : 직원 정보 등록 화면
  * AUTH : 박소영 (개발팀)
  * HIST : 20220220
 ********************************************************
@@ -27,17 +27,22 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<jsp:include page="/WEB-INF/view/include/header.jsp" />
 		<main>
-			<form action="/INSERT001.do" method="post">
+			<form action="/INSERT.do" method="post">
 					
-				
-					<div class="row"><!-- 프로필사진 + 옆라인 = 잡아주는 row div -->
+					<div align="right" class="pb-4">
+							<input type="submit" id="btn" class="btn-dark" value="등록">
+							<input type="reset" class="btn-dark" value="초기화">
+					</div>
+					
+					<div class="row"><!-- 프로필사진 + 옆 3줄 라인 = 잡아주는 row div -->
 					
 						<div class="col-3" align="center">
-							<div  class="p-2"><!-- 증명사진 padding-->
-								<img src="/img/default_profile.jpg" id="profileImgName" name="profileImgName" class="file img-thumbnail" width="170" height="200">
+							<div class="p-2"><!-- 증명사진 padding-->
+								<img src="/img/default_profile.jpg" class="file img-thumbnail" width="170" height="200">
 						  	</div>
 							<div>
 								<input type="button" id="profile_btn" class="btn btn-outline-dark" value="증명사진 업로드" onclick=document.all.file.click();><!-- 첨부파일 링크 -->
+								<input type="hidden" id="profileImgName" name="profileImgName" >
 								<input type="file" id="file" name='profile_file' onchange="setThumbnail(event);" style="display: none;"/><!-- 첨부파일 안보이게 -->
 							</div>
 						</div>
@@ -86,7 +91,7 @@
 									<div class="row mb-3"><!-- label+input=inline 잡아주는 div -->
 										<label for="pwd" class="col-4 col-form-label">비밀번호*</label>
 										<div class="col-8">
-										  <input type="password" class="form-control" id="pwd">
+										  <input type="password" class="form-control" id="pwd" name="pwd">
 										</div>
 									</div>
 								</div>
@@ -115,7 +120,7 @@
 									<div class="row mb-3"><!-- label+input=inline 잡아주는 div -->
 										<label for="phone" class="col-4 col-form-label">휴대폰*</label>
 										<div class="col-8">
-										  <input type="text" class="form-control" id="phone">
+										  <input type="text" class="form-control" id="phone" name="phone">
 										</div>
 									</div>
 								</div>
@@ -123,7 +128,7 @@
 									<div class="row mb-3"><!-- label+input=inline 잡아주는 div -->
 										<label for="call" class="col-4 col-form-label">전화번호</label>
 										<div class="col-8">
-										  <input type="text" class="form-control" id="call">
+										  <input type="text" class="form-control" id="call" name="call">
 										</div>
 									</div>
 								</div>
@@ -162,7 +167,7 @@
 									<div class="row mb-3"><!-- label+input=inline 잡아주는 div -->
 										<label class="col-1 col-form-label">@</label>
 										<div class="col-5">
-										  <input type="text" class="form-control" id="email2" name="email2" placeholder="직접입력">
+										  <input type="text" class="form-control" readonly>
 										</div>
 										<div class="col-6">
 											<select class="form-select" id="email2" name="email2">
@@ -170,6 +175,7 @@
 												<c:forEach var="a" items="${emailList}">
 													<option value="${a.name}">${a.name}</option>
 												</c:forEach>
+												<option value="1">직접입력</option>
 											</select>
 										</div>
 									</div>
@@ -184,7 +190,7 @@
 										<!--  다음 우편번호 API-->
 										<label for="zip" class="col-4 col-form-label">주소</label>
 										<div class="col-4">
-											<input type="text" class="form-control col-8" id="sample6_postcode" placeholder="우편번호" readonly>
+											<input type="text" class="form-control col-8" id="sample6_postcode" placeholder="우편번호" name="zip" readonly>
 										</div>
 										<div class="col-4">
 											<button type="button" class="btn btn-outline-dark" onclick="sample6_execDaumPostcode()">주소찾기</button>
@@ -269,7 +275,7 @@
 						
 						<label for="salary" class="col-1 col-form-label" >연봉</label>
 						<div class="col-2">
-						  <input type="text" class="form-control" id="salary" style="text-align: right" placeholder="(만원)">
+						  <input type="text" class="form-control" id="salary" name="salary" style="text-align: right" placeholder="(만원)">
 						</div>
 						
 						<label for="joinDate" class="col-1 col-form-label">입사일*</label>
@@ -355,7 +361,7 @@
 						
 						<label for="biaRegImgName" class="col-1 col-form-label">사업자등록증</label>
 						<div class="col-2">
-						<input type="text" class="form-control" id="biaRegImgName" readonly>
+						<input type="text" class="form-control" id="biaRegImgName" name="biaRegImgName" readonly>
 						</div>
 						
 						<div class="col-3" align="center">
@@ -372,7 +378,7 @@
 						
 						<label for="carrierImgName" class="col-1 col-form-label">이력서</label>
 						<div class="col-2">
-						<input type="text" class="form-control" id="carrierImgName" readonly>
+						<input type="text" class="form-control" id="carrierImgName" name="carrierImgName" readonly>
 						</div>
 						
 						<div class="col-3" align="center">

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.company.insa.vo.InsaComVo;
+import com.company.insa.vo.InsaVo;
 
 @Service
 public class InsaServiceImpl implements InsaService{
@@ -20,25 +21,29 @@ public class InsaServiceImpl implements InsaService{
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//	*******************************************************
+//	 * DESC : 직원 정보 저장
+//	 * AUTH : 박소영 (개발팀)
+//	 * HIST : 20220220
+//	********************************************************
+	@Override
+	public String getAgentNoDeptCode(InsaComVo name) {	// 사번 생성용 - 부서코드 호출
+		// TODO Auto-generated method stub
+		return insaDao.getAgentNoDeptCode(name);
+	}
+	@Override
+	public String getSeqAgentNo() {						// 사번 생성용 - 시퀀스 호출
+		// TODO Auto-generated method stub
+		return insaDao.getSeqAgentNo();
+	}
+	@Override
+	public void agentInsert(InsaVo vo) {				// 저장
+		// TODO Auto-generated method stub
+		insaDao.agentInsert(vo);
+	}
+
+
+
 //	*******************************************************
 //	 * DESC : 직원 정보 공통코드
 //	 * AUTH : 박소영 (개발팀)
@@ -109,5 +114,6 @@ public class InsaServiceImpl implements InsaService{
 		// TODO Auto-generated method stub
 		return insaDao.kosClass();
 	}
+
 
 }

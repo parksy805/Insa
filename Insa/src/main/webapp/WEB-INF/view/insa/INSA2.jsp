@@ -26,83 +26,88 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<jsp:include page="/WEB-INF/view/include/header.jsp" />
 		<main>
+<!-- 
+*******************************************************
+ * DESC : 직원 조회 검색
+ * AUTH : 박소영 (개발팀)
+ * HIST : 20220220
+********************************************************
+-->
 			<form action="/INSERT002.do">
-					
-				
 					<div class="row mb-3"><!-- 4개씩 1줄로 잡아주는 div -->
-						<label for="status" class="col-1 col-form-label">입사구분</label>
+						<label for="agentNoSearch" class="col-1 col-form-label">사번</label>
 						<div class="col-2">
-							<select class="form-select" id="status" name="status">
-								<option value="">선택</option>
-							<%--<c:forEach var="" items="${}">
-									<option value="${}">${}</option>
-								</c:forEach> --%>
-							</select>
+							<input type="text" class="form-control" id="agentNoSearch" name="agentNoSearch">
 						</div>
 						
-						<label for="dept" class="col-1 col-form-label">부서</label>
+						<label for="nameSearch" class="col-1 col-form-label">이름</label>
 						<div class="col-2">
-							<select class="form-select" id="dept" name="dept">
-								<option value="">선택</option>
-							<%--<c:forEach var="" items="${}">
-									<option value="${}">${}</option>
-								</c:forEach> --%>
-							</select>
+							<input type="text" class="form-control" id="nameSearch" name="nameSearch">
 						</div>
 						
-						<label for="position" class="col-1 col-form-label">직위</label>
+						<label for="statusSearch" class="col-1 col-form-label">입사구분</label>
 						<div class="col-2">
-							<select class="form-select" id="position" name="position">
+							<select class="form-select" id="statusSearch" name="statusSearch">
 								<option value="">선택</option>
-							<%--<c:forEach var="" items="${}">
-									<option value="${}">${}</option>
-								</c:forEach> --%>
+								<c:forEach var="a" items="${statusList}">
+									<option value="${a.name}">${a.name}</option>
+								</c:forEach>
 							</select>
 						</div>
-						<label for="jotType" class="col-1 col-form-label">직종</label>
+						<label for="deptSearch" class="col-1 col-form-label">부서</label>
 						<div class="col-2">
-							<select class="form-select" id="jotType" name="jotType">
+							<select class="form-select" id="deptSearch" name="deptSearch">
 								<option value="">선택</option>
-							<%--<c:forEach var="" items="${}">
-									<option value="${}">${}</option>
-								</c:forEach> --%>
+								<c:forEach var="a" items="${deptList}">
+									<option value="${a.name}">${a.name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						
 					</div>
 						
 					<div class="row mb-3"><!-- 4개씩 1줄로 잡아주는 div -->
-						<label for="grdLevel" class="col-1 col-form-label">최종학력</label>
+						<label for="positionSearcg" class="col-1 col-form-label">직위</label>
 						<div class="col-2">
-							<select class="form-select" id="grdLevel" name="grdLevel">
+							<select class="form-select" id="positionSearcg" name="positionSearcg">
 								<option value="">선택</option>
-							<%--<c:forEach var="" items="${}">
-									<option value="${}">${}</option>
-								</c:forEach> --%>
+								<c:forEach var="a" items="${positionList}">
+									<option value="${a.name}">${a.name}</option>
+								</c:forEach>
 							</select>
 						</div>
 						
-						<label for="salary" class="col-1 col-form-label" >연봉</label>
+						<label for="jotTypeSearch" class="col-1 col-form-label" >직종</label>
 						<div class="col-2">
-						  <input type="text" class="form-control" id="salary" style="text-align: right" placeholder="(만원)">
+							<select class="form-select" id="jotTypeSearch" name="jotTypeSearch">
+								<option value="">선택</option>
+								<c:forEach var="a" items="${jobTypeList}">
+									<option value="${a.name}">${a.name}</option>
+								</c:forEach>
+							</select>
 						</div>
 						
-						<label for="joinDate" class="col-1 col-form-label">입사일*</label>
+						<label for="joinDateSearch" class="col-1 col-form-label">입사일</label>
 						<div class="col-2">
-						  <input type="date" class="form-control" id="joinDate" name="joinDate">
+						  <input type="date" class="form-control" id="joinDateSearch" name="joinDateSearch">
 						</div>
 						
-						<label for="retireDate" class="col-1 col-form-label">퇴사일</label>
+						<label for="retireDateSearch" class="col-1 col-form-label">퇴사일</label>
 						<div class="col-2">
-						  <input type="date" class="form-control" id="retireDate" name="retireDate">
+						  <input type="date" class="form-control" id="retireDateSearch" name="retireDateSearch">
 						</div>
 					</div>
 					
 			</form>
-			
-			
-			
+<!-- 
+*******************************************************
+ * DESC : 직원 조회 리스트 출력
+ * AUTH : 박소영 (개발팀)
+ * HIST : 20220220
+********************************************************
+-->
 			<table class="table table-hover table-bordered">
+			
 				<thead align="center">
 					<tr>
 						<th scope="col">#</th>
@@ -117,40 +122,56 @@
 						<th scope="col">연봉</th>
 					</tr>
 				</thead>
+				
+				
 				<tbody align="center">
-					<tr>
-						<th scope="row">1</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+				
+					<c:if test="${empty insaList}">
+						<tr>
+							<td colspan="10" align="center">
+								검색 결과가 없습니다.
+							</td>
+						</tr>
+					</c:if>
+					
+					
+					<c:forEach var="a" items="${insaList}">
+						<tr>
+							<th scope="row">1</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">2</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th scope="row">3</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</c:forEach>
+					
+					
 				</tbody>
 			</table>
 			

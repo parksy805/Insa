@@ -10,18 +10,19 @@ public class InsaVo {
 //	 * HIST : 20220220
 //	********************************************************
 	
-	private String agentNo;					//사번
-	private String name;					//이름
+	private String agentNo;					//사번*
+	private String name;					//이름*
 	private String engName;					//영어이름
-	private String id;						//아이디
-	private String pwd;						//비밀번호
-	private String regNo;					//주민번호
-	private String phone;					//휴대폰
+	private String id;						//아이디*
+	private String pwd;						//비밀번호*
+	private String regNo;					//주민번호*
+	private String phone;					//휴대폰*
 	private String call;					//전화번호
 	private String age;						//나이
 	private String sex;						//성별
-	private String email1;					//이메일 앞
-   	private String email2;					//이메일 뒤
+	private String email1;					//이메일 앞*
+   	private String email2;					//이메일 뒤*
+   	private String email;					//이메일
    	private String zip;						//우편번호
 	private String addr1;					//도로명주소
 	private String addr2;					//상세주소
@@ -31,7 +32,7 @@ public class InsaVo {
     private String jotType;					//직종
    	private String grdLevel;				//최종학력
 	private String salary;					//연봉
-	private String joinDate;				//입사일
+	private String joinDate;				//입사일*
 	private String retireDate;				//퇴사일
 	private String milYn;					//입대여부
   	private String milType;					//군별
@@ -279,18 +280,40 @@ public class InsaVo {
 	public void setBizRegImg(MultipartFile bizRegImg) {
 		this.bizRegImg = bizRegImg;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	@Override
 	public String toString() {
 		return "InsaVo [agentNo=" + agentNo + ", name=" + name + ", engName=" + engName + ", id=" + id + ", pwd=" + pwd
 				+ ", regNo=" + regNo + ", phone=" + phone + ", call=" + call + ", age=" + age + ", sex=" + sex
-				+ ", email1=" + email1 + ", email2=" + email2 + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", status=" + status + ", dept=" + dept + ", position=" + position + ", jotType=" + jotType
-				+ ", grdLevel=" + grdLevel + ", salary=" + salary + ", joinDate=" + joinDate + ", retireDate="
+				+ ", email1=" + email1 + ", email2=" + email2 + ", email=" + email + ", zip=" + zip + ", addr1=" + addr1
+				+ ", addr2=" + addr2 + ", status=" + status + ", dept=" + dept + ", position=" + position + ", jotType="
+				+ jotType + ", grdLevel=" + grdLevel + ", salary=" + salary + ", joinDate=" + joinDate + ", retireDate="
 				+ retireDate + ", milYn=" + milYn + ", milType=" + milType + ", milStartDate=" + milStartDate
 				+ ", milEndDate=" + milEndDate + ", kosaYn=" + kosaYn + ", kosClass=" + kosClass + ", bizRegNo="
 				+ bizRegNo + ", bizName=" + bizName + ", biaRegImgName=" + biaRegImgName + ", selfIntro=" + selfIntro
 				+ ", carrierImgName=" + carrierImgName + ", profileImgName=" + profileImgName + ", profileImg="
-				+ profileImg + ", careerImg=" + careerImg + ", bizRegImg=" + bizRegImg + "]";
+				+ profileImg + ", careerImg=" + careerImg + ", bizRegImg=" + bizRegImg + ", getAgentNo()="
+				+ getAgentNo() + ", getName()=" + getName() + ", getEngName()=" + getEngName() + ", getId()=" + getId()
+				+ ", getPwd()=" + getPwd() + ", getRegNo()=" + getRegNo() + ", getPhone()=" + getPhone()
+				+ ", getCall()=" + getCall() + ", getAge()=" + getAge() + ", getSex()=" + getSex() + ", getEmail1()="
+				+ getEmail1() + ", getEmail2()=" + getEmail2() + ", getZip()=" + getZip() + ", getAddr1()=" + getAddr1()
+				+ ", getAddr2()=" + getAddr2() + ", getStatus()=" + getStatus() + ", getDept()=" + getDept()
+				+ ", getPosition()=" + getPosition() + ", getJotType()=" + getJotType() + ", getGrdLevel()="
+				+ getGrdLevel() + ", getSalary()=" + getSalary() + ", getJoinDate()=" + getJoinDate()
+				+ ", getRetireDate()=" + getRetireDate() + ", getMilYn()=" + getMilYn() + ", getMilType()="
+				+ getMilType() + ", getMilStartDate()=" + getMilStartDate() + ", getMilEndDate()=" + getMilEndDate()
+				+ ", getKosaYn()=" + getKosaYn() + ", getKosClass()=" + getKosClass() + ", getBizRegNo()="
+				+ getBizRegNo() + ", getBizName()=" + getBizName() + ", getBiaRegImgName()=" + getBiaRegImgName()
+				+ ", getSelfIntro()=" + getSelfIntro() + ", getCarrierImgName()=" + getCarrierImgName()
+				+ ", getProfileImgName()=" + getProfileImgName() + ", getProfileImg()=" + getProfileImg()
+				+ ", getCareerImg()=" + getCareerImg() + ", getBizRegImg()=" + getBizRegImg() + ", getEmail()="
+				+ getEmail() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 }
