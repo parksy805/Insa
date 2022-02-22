@@ -55,15 +55,10 @@ public class ControllerView {
 		return "insa/INSA3";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping(value = "/test.do")
+	public String test() {
+		return "main";
+	}
 	
 //	@RequestMapping(value = "/test.do", method = RequestMethod.GET)
 //	public String testfn(Model m) {

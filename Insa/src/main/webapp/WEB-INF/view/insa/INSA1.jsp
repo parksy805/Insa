@@ -21,14 +21,20 @@
  * HIST : 20220220
 ********************************************************
 -->
+
+<script>
+
+
+</script>
 </head>
 <body class="d-flex h-100 bg-light">
 
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<jsp:include page="/WEB-INF/view/include/header.jsp" />
 		<main>
-			<form action="/INSERT.do" method="post">
-					
+			<form action="/INSERT.do" method="post" enctype="multipart/form-data">
+<!-- enctype="multipart/form-data" : 파일업로드 포함해서 form 넘길때 꼭 써줘야하는 설정("html form 자료실"검색?해보기) -->
+			
 					<div align="right" class="pb-4">
 							<input type="submit" id="btn" class="btn-dark" value="등록">
 							<input type="reset" class="btn-dark" value="초기화">
@@ -38,12 +44,11 @@
 					
 						<div class="col-3" align="center">
 							<div class="p-2"><!-- 증명사진 padding-->
-								<img src="/img/default_profile.jpg" class="file img-thumbnail" width="170" height="200">
+								<img src="/defaultImg/default_profile.jpg" class="file img-thumbnail" id="profile_thumbnail" width="170" height="200">
 						  	</div>
 							<div>
-								<input type="button" id="profile_btn" class="btn btn-outline-dark" value="증명사진 업로드" onclick=document.all.file.click();><!-- 첨부파일 링크 -->
-								<input type="hidden" id="profileImgName" name="profileImgName" >
-								<input type="file" id="file" name='profile_file' onchange="setThumbnail(event);" style="display: none;"/><!-- 첨부파일 안보이게 -->
+								<input type="button" id="profile_btn" class="btn btn-outline-dark" value="증명사진 업로드" onclick=document.all.profileImg.click();><!--profileImg활성화 버튼-->
+								<input type="file" id="profileImg" name="profileImg" onchange="setProfileImg(event);" style="display: none;"/><!-- 업로드파일명 안보이게 -->
 							</div>
 						</div>
 						

@@ -46,9 +46,9 @@ public class InsaVo {
 	private String selfIntro;				//자기소개
 	private String carrierImgName;			//이력서 파일명
 	private String profileImgName;			//증명사진 파일명
-	private MultipartFile profileImg;
-	private MultipartFile careerImg;
-	private MultipartFile bizRegImg;
+	private MultipartFile profileImg;		//증명사진 업로드파일
+	private MultipartFile carrierImg;		//이력서 업로드파일
+	private MultipartFile bizRegImg;		//사업자등록증 업로드파일
 	
 	//getter,setter,toString생성
 	
@@ -268,11 +268,11 @@ public class InsaVo {
 	public void setProfileImg(MultipartFile profileImg) {
 		this.profileImg = profileImg;
 	}
-	public MultipartFile getCareerImg() {
-		return careerImg;
+	public MultipartFile getcarrierImg() {
+		return carrierImg;
 	}
-	public void setCareerImg(MultipartFile careerImg) {
-		this.careerImg = careerImg;
+	public void setcarrierImg(MultipartFile carrierImg) {
+		this.carrierImg = carrierImg;
 	}
 	public MultipartFile getBizRegImg() {
 		return bizRegImg;
@@ -297,23 +297,7 @@ public class InsaVo {
 				+ ", milEndDate=" + milEndDate + ", kosaYn=" + kosaYn + ", kosClass=" + kosClass + ", bizRegNo="
 				+ bizRegNo + ", bizName=" + bizName + ", biaRegImgName=" + biaRegImgName + ", selfIntro=" + selfIntro
 				+ ", carrierImgName=" + carrierImgName + ", profileImgName=" + profileImgName + ", profileImg="
-				+ profileImg + ", careerImg=" + careerImg + ", bizRegImg=" + bizRegImg + ", getAgentNo()="
-				+ getAgentNo() + ", getName()=" + getName() + ", getEngName()=" + getEngName() + ", getId()=" + getId()
-				+ ", getPwd()=" + getPwd() + ", getRegNo()=" + getRegNo() + ", getPhone()=" + getPhone()
-				+ ", getCall()=" + getCall() + ", getAge()=" + getAge() + ", getSex()=" + getSex() + ", getEmail1()="
-				+ getEmail1() + ", getEmail2()=" + getEmail2() + ", getZip()=" + getZip() + ", getAddr1()=" + getAddr1()
-				+ ", getAddr2()=" + getAddr2() + ", getStatus()=" + getStatus() + ", getDept()=" + getDept()
-				+ ", getPosition()=" + getPosition() + ", getJotType()=" + getJotType() + ", getGrdLevel()="
-				+ getGrdLevel() + ", getSalary()=" + getSalary() + ", getJoinDate()=" + getJoinDate()
-				+ ", getRetireDate()=" + getRetireDate() + ", getMilYn()=" + getMilYn() + ", getMilType()="
-				+ getMilType() + ", getMilStartDate()=" + getMilStartDate() + ", getMilEndDate()=" + getMilEndDate()
-				+ ", getKosaYn()=" + getKosaYn() + ", getKosClass()=" + getKosClass() + ", getBizRegNo()="
-				+ getBizRegNo() + ", getBizName()=" + getBizName() + ", getBiaRegImgName()=" + getBiaRegImgName()
-				+ ", getSelfIntro()=" + getSelfIntro() + ", getCarrierImgName()=" + getCarrierImgName()
-				+ ", getProfileImgName()=" + getProfileImgName() + ", getProfileImg()=" + getProfileImg()
-				+ ", getCareerImg()=" + getCareerImg() + ", getBizRegImg()=" + getBizRegImg() + ", getEmail()="
-				+ getEmail() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ profileImg + ", carrierImg=" + carrierImg + ", bizRegImg=" + bizRegImg + "]";
 	}
 	
 }
