@@ -57,7 +57,7 @@ public class ControllerView {
 
 	@GetMapping(value = "/test.do")
 	public String test() {
-		return "main";
+		return "test";
 	}
 	
 //	@RequestMapping(value = "/test.do", method = RequestMethod.GET)

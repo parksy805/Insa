@@ -23,13 +23,13 @@ import com.company.insa.vo.InsaVo;
 
 @ControllerAdvice
 @Controller
-public class ControllerAction {
+public class ControllerAction1 {
 
 	@Autowired
 	InsaServiceImpl insaServiceImpl;
 
 //	*******************************************************
-//	 * DESC : Controller Action 기능 호출
+//	 * DESC : 직원 정보 저장
 //	 * AUTH : 박소영 (개발팀)
 //	 * HIST : 20220220
 //	********************************************************
@@ -39,7 +39,7 @@ public class ControllerAction {
 		// InsaVo vo : [가져온 value] INSA1 <form> name=""으로 넘어온 value들
 		// RedirectAttributes re: [보낼 value] Model m은 1번 데이터전송하면 사라짐. 이걸 쓰면 사라지지 않음
 		// HttpServletRequest request : MultipartFile 업로드파일 저장용
-		
+
 		// *********************************************************
 		// * 사번 설정 (입사년월4자리 + 부서코드2자리 + 시퀀스3자리)
 		// *********************************************************
@@ -79,33 +79,31 @@ public class ControllerAction {
 		// *********************************************************
 		MultipartFile profileImg = vo.getProfileImg();// 업로드된 파일 호출
 		String path = request.getSession().getServletContext().getRealPath("/img/profile/");// 저장경로
-		
-		//********** 1. 파일 업로드가 있을 경우
+
+		// ********** 1. 파일 업로드가 있을 경우
 		if (!profileImg.isEmpty()) {
 			String fileName = profileImg.getOriginalFilename();// "파일명.확장자" 호출
-			File file = new File(path +fileName);// File객체 생성해서 새로 저장
-			
+			File file = new File(path + fileName);// File객체 생성해서 새로 저장
+
 			// 1.1 파일 업로드가 있는데, 같은 이름이 있을 경우->날짜시간 추가한 fileName 다시 초기화.
-			if (file.exists()) { 
+			if (file.exists()) {
 				String onlyFileName = fileName.substring(0, fileName.indexOf("."));
-				//.indexOf( "처음~해당부분까지" ) : 처음부터 ~ "."이 뜨는 곳까지 자름. 이 경우, 확장자 전까지
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH"); //받아올 날짜 포맷
+				// .indexOf( "처음~해당부분까지" ) : 처음부터 ~ "."이 뜨는 곳까지 자름. 이 경우, 확장자 전까지
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH"); // 받아올 날짜 포맷
 				String date = sdf.format(new Date());
 				String extension = fileName.substring(fileName.indexOf("."));// .jpg, .png 부분
-				fileName = onlyFileName + "_" + date + extension; //[파일명_오늘날짜.확장자] 최종파일명
+				fileName = onlyFileName + "_" + date + extension; // [파일명_오늘날짜.확장자] 최종파일명
 			}
-			
-			//fileName setting됐으면 File 전송하기
-			vo.setProfileImgName(fileName); //Database에 저장할 fileName
+
+			// fileName setting됐으면 File 전송하기
+			vo.setProfileImgName(fileName); // Database에 저장할 fileName
 			profileImg.transferTo(new File(path + fileName));
-			
-		} //********** 2. 파일 업로드가 없을 경우
+
+		} // ********** 2. 파일 업로드가 없을 경우
 		else {
-			vo.setProfileImgName("default_profile.jpg"); //Database에 저장할 fileName
+			vo.setProfileImgName("default_profile.jpg"); // Database에 저장할 fileName
 		}
 
-		
-		
 		// *********************************************************
 		// * 직원 정보 저장
 		// *********************************************************
