@@ -1,7 +1,6 @@
 package com.company.insa.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,12 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -75,7 +70,7 @@ public class ControllerAction1 {
 		// vo.setProfileImgName("");
 
 		// *********************************************************
-		// * 업로드파일 setter
+		// * 프로필(증명사진) 업로드파일 setter
 		// *********************************************************
 		MultipartFile profileImg = vo.getProfileImg();// 업로드된 파일 호출
 		String path = request.getSession().getServletContext().getRealPath("/img/profile/");// 저장경로
@@ -103,7 +98,65 @@ public class ControllerAction1 {
 		else {
 			vo.setProfileImgName("default_profile.jpg"); // Database에 저장할 fileName
 		}
+		// *********************************************************
+		// * 사업자등록증 업로드파일 setter
+		// *********************************************************
+		MultipartFile bizRegImg = vo.getBizRegImg();// 업로드된 파일 호출
+		String path2 = request.getSession().getServletContext().getRealPath("/img/biz/");// 저장경로
 
+		// ********** 1. 파일 업로드가 있을 경우
+		if (!bizRegImg.isEmpty()) {
+			String fileName = bizRegImg.getOriginalFilename();// "파일명.확장자" 호출
+			File file = new File(path2 + fileName);// File객체 생성해서 새로 저장
+
+			// 1.1 파일 업로드가 있는데, 같은 이름이 있을 경우->날짜시간 추가한 fileName 다시 초기화.
+			if (file.exists()) {
+				String onlyFileName = fileName.substring(0, fileName.indexOf("."));
+				// .indexOf( "처음~해당부분까지" ) : 처음부터 ~ "."이 뜨는 곳까지 자름. 이 경우, 확장자 전까지
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH"); // 받아올 날짜 포맷
+				String date = sdf.format(new Date());
+				String extension = fileName.substring(fileName.indexOf("."));// .jpg, .png 부분
+				fileName = onlyFileName + "_" + date + extension; // [파일명_오늘날짜.확장자] 최종파일명
+			}
+
+			// fileName setting됐으면 File 전송하기
+			vo.setBiaRegImgName(fileName); // Database에 저장할 fileName
+			bizRegImg.transferTo(new File(path2 + fileName));
+
+		} // ********** 2. 파일 업로드가 없을 경우
+		else {
+			vo.setBiaRegImgName("default_biz.jpg"); // Database에 저장할 fileName
+		}
+		// *********************************************************
+		// * 이력서 업로드파일 setter
+		// *********************************************************
+		MultipartFile carrierImg = vo.getcarrierImg();// 업로드된 파일 호출
+		String path3 = request.getSession().getServletContext().getRealPath("/img/carrier/");// 저장경로
+
+		// ********** 1. 파일 업로드가 있을 경우
+		if (!carrierImg.isEmpty()) {
+			String fileName = carrierImg.getOriginalFilename();// "파일명.확장자" 호출
+			File file = new File(path3 + fileName);// File객체 생성해서 새로 저장
+
+			// 1.1 파일 업로드가 있는데, 같은 이름이 있을 경우->날짜시간 추가한 fileName 다시 초기화.
+			if (file.exists()) {
+				String onlyFileName = fileName.substring(0, fileName.indexOf("."));
+				// .indexOf( "처음~해당부분까지" ) : 처음부터 ~ "."이 뜨는 곳까지 자름. 이 경우, 확장자 전까지
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH"); // 받아올 날짜 포맷
+				String date = sdf.format(new Date());
+				String extension = fileName.substring(fileName.indexOf("."));// .jpg, .png 부분
+				fileName = onlyFileName + "_" + date + extension; // [파일명_오늘날짜.확장자] 최종파일명
+			}
+
+			// fileName setting됐으면 File 전송하기
+			vo.setCarrierImgName(fileName); // Database에 저장할 fileName
+			carrierImg.transferTo(new File(path3 + fileName));
+
+		} // ********** 2. 파일 업로드가 없을 경우
+		else {
+			vo.setCarrierImgName("default_carrier.jpg"); // Database에 저장할 fileName
+		}
+		
 		// *********************************************************
 		// * 직원 정보 저장
 		// *********************************************************

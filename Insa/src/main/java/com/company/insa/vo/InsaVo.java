@@ -47,8 +47,8 @@ public class InsaVo {
 	private String carrierImgName;			//이력서 파일명
 	private String profileImgName;			//증명사진 파일명
 	private MultipartFile profileImg;		//증명사진 업로드파일
-	private MultipartFile carrierImg;		//이력서 업로드파일
 	private MultipartFile bizRegImg;		//사업자등록증 업로드파일
+	private MultipartFile carrierImg;		//이력서 업로드파일
 	
 	//getter,setter,toString생성
 	

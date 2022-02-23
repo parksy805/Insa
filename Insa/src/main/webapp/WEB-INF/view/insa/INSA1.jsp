@@ -14,6 +14,7 @@
     <!-- DAUM ZIP API for this template -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/zip.js"></script>
+<script src="js/INSA1.js"></script>
 <!--
 *******************************************************
  * DESC : 직원 정보 등록 화면
@@ -386,7 +387,7 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<img src="/defaultImg/default_cmp.jpg" class="file img-thumbnail" id="biz_thumbnail">
+											<img src="/defaultImg/default_biz.jpg" class="file img-thumbnail" id="biz_thumbnail">
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -435,7 +436,7 @@
 											<img src="/defaultImg/default_carrier.jpg" class="file img-thumbnail" id="carrier_thumbnail">
 										</div>
 										<div class="modal-footer">
-											<button type=""file"" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 										</div>
 									</div>
 								</div>
