@@ -59,7 +59,7 @@
 		]]>
 	</select>
 	
-	<select id="milTyoeList" resultType="com.company.insa.vo.InsaComVo">
+	<select id="milTypeList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
 			SELECT name FROM insa_com WHERE gubun='09'
 		]]>

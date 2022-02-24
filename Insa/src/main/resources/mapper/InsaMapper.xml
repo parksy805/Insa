@@ -61,55 +61,55 @@
 				FROM (SELECT * 
 				FROM insa WHERE 1=1 
 					]]>
-				<if test='search_sabun != ""'>
+				<if test='searchAgentNo != ""'>
 			    <![CDATA[  
-			    	AND sabun LIKE'%' || #{search_sabun} || '%' 
+			    	AND agentNo LIKE'%' || #{searchAgentNo} || '%' 
 			    ]]>
 				</if>
 		
-				<if test='search_name != ""'>
+				<if test='searchName != ""'>
 			    <![CDATA[  
-			    	AND name LIKE'%' || #{search_name} || '%' 
+			    	AND name LIKE'%' || #{searchName} || '%' 
 			    ]]>
 				</if>
 		
-				<if test='search_join_gbn_code != ""'>
+				<if test='searchStatus != ""'>
 			    <![CDATA[  
-			    	AND join_gbn_code = #{search_join_gbn_code}
+			    	AND status = #{searchStatus}
 			    ]]>
 				</if>
 		
-				<if test='search_put_yn != ""'>
+				<if test='searchPutYn != ""'>
 			    <![CDATA[  
-			    	AND put_yn = #{search_put_yn} 
+			    	AND putYn = #{searchPutYn} 
 			    ]]>
 				</if>
 		
-				<if test='search_pos_gbn_code != ""'>
+				<if test='searchPosition != ""'>
 			    <![CDATA[  
-			    	AND pos_gbn_code = #{search_pos_gbn_code} 
+			    	AND position = #{searchPosition} 
 			    ]]>
 				</if>
 		
-				<if test='search_join_day != ""'>
+				<if test='searchJoinDate != ""'>
 			    <![CDATA[  
-			    	AND join_day = #{search_join_day} 
+			    	AND joinDate = #{searchJoinDate} 
 			    ]]>
 				</if>
 		
-				<if test='search_retire_day != ""'>
+				<if test='searchRetireDate != ""'>
 			    <![CDATA[  
-			    	AND retire_day = #{search_retire_day} 
+			    	AND retireDate = #{searchRetireDate} 
 			    ]]>
 				</if>
 		
-				<if test='search_job_type != ""'>
+				<if test='searchJobType != ""'>
 			    <![CDATA[  
-			    	AND job_type = #{search_job_type}
+			    	AND jobType = #{searchJobType}
 			    ]]>
 				</if>
 		<![CDATA[
-					ORDER BY sabun DESC) K1 
+					ORDER BY agentNo DESC) K1 
 			WHERE rownum <= #{nowRecord}+9) K2 
 		WHERE rnum >= #{nowRecord}
 		]]>
@@ -124,37 +124,39 @@
 		<![CDATA[
 			UPDATE insa SET 
 				name=#{name},
-				eng_name=#{eng_name},	
+				engName=#{engName},	
 				pwd=#{pwd},
+				regNo=#{regNo}, 
 				phone=#{phone},
-				hp=#{hp}, 
-				reg_no=#{reg_no}, 
-				years=#{years}, 
-				email=#{email}, 
-				job_type=#{job_type},
+				call=#{call}, 
+				age=#{age},
 				sex=#{sex}, 
+				email=#{email}, 
 				zip=#{zip}, 
 				addr1=#{addr1}, 
 				addr2=#{addr2},
-				pos_gbn_code=#{pos_gbn_code}, 
-				dept_code=#{dept_code}, 
+				status=#{status},
+				putYn=#{putYn},
+				dept=#{dept}, 
+				position=#{position}, 
+				jobType=#{jobType},
 				salary=#{salary},
-				join_gbn_code=#{join_gbn_code},	
-				gart_level=#{gart_level}, 
-				put_yn=#{put_yn},
-				mil_yn=#{mil_yn}, 
-				mil_type=#{mil_type},	
-				mil_level=#{mil_level},	
-				mil_startdate=#{mil_startdate},	
-				mil_enddate=#{mil_enddate},
-				cmp_reg_no=#{cmp_reg_no}, 
-				crm_name=#{crm_name},	
-				self_intro=#{self_intro},
-				profile=#{profile},
-				cmp_reg_img=#{cmp_reg_img},
-				carrier=#{carrier}
-			
-			WHERE sabun=#{sabun}
+				retireDate=#{retireDate},
+				milYn=#{milYn}, 
+				milType=#{milType},	
+				milLevel=#{milLevel},	
+				milStartDate=#{milStartDate},	
+				milEndDate=#{milEndDate},
+				kosaYn=#{kosaYn}, 
+				kosaLevel=#{kosaLevel},	
+				grdLevel=#{grdLevel},
+				cmpRegNo=#{cmpRegNo}, 
+				cmp=#{cmp},	
+				cmpFileName=#{cmpFileName},
+				selfIntro=#{selfIntro},
+				carrierFileName=#{carrierFileName},
+				profileFileName=#{profileFileName}
+			WHERE agentNo=#{agentNo}
 		]]>
 	</update>
 	
@@ -163,7 +165,7 @@
 **********************************-->
 	<delete id="insaDeleteByAgentNo" parameterType="com.company.insa.vo.InsaVo">
 		<![CDATA[
-		DELETE FROM insa WHERE sabun=#{sabun}
+		DELETE FROM insa WHERE agentNo=#{agentNo}
 		]]>
 	</delete>
 	
@@ -173,19 +175,19 @@
 **********************************-->
 	<select id="getProfileFileNameByAgentNo" resultType="String">
 	<![CDATA[
-		SELECT profile FROM insa WHERE sabun=#{sabun}
+		SELECT profile FROM insa WHERE agentNo=#{agentNo}
 	]]>
 	</select>
 
 	<select id="getCmpFileNameByAgentNo" resultType="String">
 	<![CDATA[
-		SELECT cmp_reg_img FROM insa WHERE sabun=#{sabun}
+		SELECT cmp_reg_img FROM insa WHERE agentNo=#{agentNo}
 	]]>
 	</select>
 	
 	<select id="getCarrierFileNameByAgentNo" resultType="String">
 	<![CDATA[
-	SELECT carrier FROM insa WHERE sabun=#{sabun}
+	SELECT carrier FROM insa WHERE agentNo=#{agentNo}
 	]]>
 	</select>
 	
@@ -194,64 +196,65 @@
 페이징 관련 함수
 **********************************-->
 
-<!-- 	<select id="getTotalRecord"	parameterType="com.company.insa.vo.InsaVo" resultType="Int">
+	<select id="getTotalRecord"	parameterType="com.company.insa.vo.InsaVo" resultType="Int">
 		<![CDATA[
 			SELECT count(*) FROM insa WHERE 1 = 1
 		]]>
-		<if test='search_sabun != ""'>
+		<if test='searchAgentNo != ""'>
 		<![CDATA[  
-	    	AND sabun LIKE'%' || #{search_sabun} || '%' 
+	    	AND agentNo LIKE'%' || #{searchAgentNo} || '%' 
 	    ]]>
 		</if>
 
-		<if test='search_name != ""'>
+		<if test='searchName != ""'>
 	    <![CDATA[  
-	    	AND name LIKE'%' || #{search_name} || '%' 
+	    	AND name LIKE'%' || #{searchName} || '%' 
 	    ]]>
 		</if>
 
-		<if test='search_join_gbn_code != ""'>
+		<if test='searchStatus != ""'>
 	    <![CDATA[  
-	    	AND join_gbn_code = #{search_join_gbn_code}
+	    	AND status = #{searchStatus}
 	    ]]>
 		</if>
 
-		<if test='search_put_yn != ""'>
+		<if test='searchPutYn != ""'>
 	    <![CDATA[  
-	    	AND put_yn = #{search_put_yn} 
+	    	AND putYn = #{searchPutYn} 
 	    ]]>
 		</if>
 
-		<if test='search_pos_gbn_code != ""'>
+		<if test='searchPosition != ""'>
 	    <![CDATA[  
-	    	AND pos_gbn_code = #{search_pos_gbn_code} 
+	    	AND position = #{searchPosition} 
 	    ]]>
 		</if>
 
-		<if test='search_join_day != ""'>
+		<if test='searchJobType != ""'>
 	    <![CDATA[  
-	    	AND join_day = #{search_join_day} 
+	    	AND jobType = #{searchJobType}
+	    ]]>
+		</if>
+		
+		<if test='searchJoinDate != ""'>
+	    <![CDATA[  
+	    	AND joinDate = #{searchJoinDate} 
 	    ]]>
 		</if>
 
-		<if test='search_retire_day != ""'>
+		<if test='searchRetireDate != ""'>
 	    <![CDATA[  
-	    	AND retire_day = #{search_retire_day} 
+	    	AND retireDate = #{searchRetireDate} 
 	    ]]>
 		</if>
 
-		<if test='search_job_type != ""'>
-	    <![CDATA[  
-	    	AND job_type = #{search_job_type}
-	    ]]>
-		</if>
 	</select>
 
 	<select id="insaPage" parameterType="string" resultType="com.company.insa.vo.InsaVo">
 		<![CDATA[ 
-		SELECT * FROM insa WHERE sabun =#{sabun}
+		SELECT * FROM insa WHERE agentNo =#{agentNo}
 		 ]]>
-	</select> -->
+	</select>
 	
 	
 	

@@ -11,6 +11,7 @@
     <!-- Bootstrap core CSS,JS CDN -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- jquery core(이걸 먼저 선언해야 custom js/*.js 파일들이 동작한다) 
     	그리고 해당화면에서만 쓰일 jQuery라면 따로 js파일로 빼지 않는게 낫다-->
 <script src="js/jquery-3.6.0.min.js"></script>
@@ -18,7 +19,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 
     <!-- Custom styles for this template -->
-<link href="css/INSA.css" rel="stylesheet">
+<link href="css/input.css" rel="stylesheet">
     <!-- DAUM ZIP API for this template -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/zip.js"></script>
@@ -44,7 +45,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		<jsp:include page="/WEB-INF/view/include/header.jsp" />
 		
 		<main>
-			<form action="/inputForm.do" method="post" enctype="multipart/form-data">
+			<form action="input.do" method="post" enctype="multipart/form-data">
 <!-- enctype="multipart/form-data" : 파일업로드 포함해서 form 넘길때 꼭 써줘야하는 설정("html form 자료실"검색?해보기) -->
 			
 					<div align="right" class="pb-3"><!-- padding bottom 3 -->
@@ -59,8 +60,8 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 								<img src="/defaultImg/default_profile.jpg" class="file img-thumbnail" id="profile_thumbnail" width="130"><!--사진크기는 width로만 잡아줘도 됨-->
 						  	</div>
 							<div>
-								<input type="button" id="profile_btn" class="btn btn-outline-dark" value="증명사진 업로드" onclick=document.all.profileImg.click();><!--profileImg File trigger 버튼-->
-								<input type="file" id="profileImg" name="profileImg" onchange="setProfileImg(event);" style="display: none;"/><!-- 업로드파일명 안보이게 -->
+								<input type="button" id="profile_btn" class="btn btn-outline-dark" value="증명사진 업로드" onclick=document.all.profileFile.click();><!--profileImg File trigger 버튼-->
+								<input type="file" id="profileFile" name="profileFile" onchange="setProfileImg(event);" style="display: none;"/><!-- 업로드파일명 안보이게 -->
 							</div>
 						</div>
 						
@@ -270,7 +271,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 										<label for="dept" class="col-4 col-form-label">부서</label>
 										<div class="col-8">
 											<select class="form-select" id="dept" name="dept">
-												<option value="" value2="00">선택</option>
+												<option value="" value2="000">선택</option>
 												<c:forEach var="a" items="${deptList}">
 													<option value="${a.name}" value2="${a.code}">${a.name}</option>
 													<!-- a.code를 가져오기 위해서 ComMapper.xml id="deptList"에서 SELECT code 추가-->
@@ -423,7 +424,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 						<div class="col-2">
 							<select class="form-select" id="kosaLevel" name="kosaLevel">
 								<option value="">선택</option>
-								<c:forEach var="a" items="${kosClassList}">
+								<c:forEach var="a" items="${kosaLevelList}">
 									<option value="${a.name}">${a.name}</option>
 								</c:forEach>
 							</select>

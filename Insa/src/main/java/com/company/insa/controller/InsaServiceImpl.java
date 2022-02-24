@@ -53,8 +53,8 @@ public class InsaServiceImpl implements InsaService{
 	// *********************************************************
 
 	@Override
-	public List<InsaVo> insaList(InsaVo vo) {
-		return insaDao.insaList(vo);
+	public List<InsaVo> list(InsaVo vo) {
+		return insaDao.list(vo);
 	}
 
 	// *********************************************************
@@ -149,8 +149,8 @@ public class InsaServiceImpl implements InsaService{
 	}
 
 	@Override
-	public List<InsaComVo> milTyoeList() {
-		return insaDao.milTyoeList();
+	public List<InsaComVo> milTypeList() {
+		return insaDao.milTypeList();
 	}
 
 	@Override

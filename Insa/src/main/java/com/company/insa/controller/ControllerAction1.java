@@ -101,12 +101,12 @@ public class ControllerAction1 {
 		// *********************************************************
 		// * 프로필(증명사진) 업로드파일 setter
 		// *********************************************************
-		MultipartFile profile_file = vo.getProfileFile(); 												// 업로드파일 호출
+		MultipartFile profileFile = vo.getProfileFile(); 												// 업로드파일 호출
 		String path = request.getSession().getServletContext().getRealPath("/uploadImages/profile/");	// 저장경로
 
 		// ● 1. 파일 업로드가 있을 경우
-		if( !profile_file.isEmpty() ) {
-			String fileName = profile_file.getOriginalFilename();										// 업로드파일 "파일명.확장자" 호출
+		if( !profileFile.isEmpty() ) {
+			String fileName = profileFile.getOriginalFilename();										// 업로드파일 "파일명.확장자" 호출
 			File file = new File(path + fileName);														// File객체 생성해서 새로 저장
 
 			// 1.1 파일 업로드가 있는데, 같은 이름이 있을 경우->날짜시간 추가한 fileName 다시 초기화.
@@ -121,7 +121,7 @@ public class ControllerAction1 {
 
 			// fileName setting됐으면 File 전송하기
 			vo.setProfileFileName(fileName);															// Database에 저장할 fileName
-			profile_file.transferTo(new File(path + fileName));
+			profileFile.transferTo(new File(path + fileName));
 
 		} // ● 2. 파일 업로드가 없을 경우
 		else {
@@ -189,12 +189,12 @@ public class ControllerAction1 {
 		// *********************************************************
 		// * 직원 정보 저장
 		// *********************************************************
-		insaServiceImpl.input(vo); 													// InputForm의 데이터를 name=""으로 매핑해서 insert함
+		insaServiceImpl.input(vo); 															// InputForm의 데이터를 name=""으로 매핑해서 insert함
 		re.addFlashAttribute("agentNo", vo.getAgentNo());
 		re.addFlashAttribute("inputVo", vo);
 		re.addFlashAttribute("success", "저장에 성공하였습니다.");
 
-		return "redirect:/INSA1.do"; 														// "redirect:/이동할 주소" // 직원 정보 등록 화면이동
+		return "redirect:/inputForm.do"; 														// "redirect:/이동할 주소" // 직원 정보 등록 화면이동
 	}
 
 }

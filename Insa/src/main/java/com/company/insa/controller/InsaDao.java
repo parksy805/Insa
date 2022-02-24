@@ -24,7 +24,7 @@ public interface InsaDao {
 	//*********************************************************
 	// * 직원 검색 조회
 	//*********************************************************
-	public List<InsaVo> insaList(InsaVo vo);					//검색
+	public List<InsaVo> list(InsaVo vo);					//검색
 
 	
 	//*********************************************************
@@ -61,7 +61,7 @@ public interface InsaDao {
 	List<InsaComVo> positionList();					// 공통코드 직위
 	List<InsaComVo> jobTypeList();					// 공통코드 직종
 	List<InsaComVo> milYnList();					// 공통코드 입대여부
-	List<InsaComVo> milTyoeList();					// 공통코드 군별
+	List<InsaComVo> milTypeList();					// 공통코드 군별
 	List<InsaComVo> milLevelList();					// 공통코드 계급
 	List<InsaComVo> kosaYnList();					// 공통코드 kosa여부
 	List<InsaComVo> kosaLevelList();				// 공통코드 kosa등급

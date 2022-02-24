@@ -30,7 +30,7 @@ function hangul(){
 	}
 }
 
-$(document).ready(function() {
+$(document).ready(function() { //jquery script 라이브러리가 다른 script보다 먼저 선언되어야함
 	//alert("1");
 	
 	/********************************************************
@@ -276,8 +276,94 @@ $(document).ready(function() {
 	
 	
 	
+	$("form").submit(function(event) {
+	
+		if (confirm("등록하시겠습니까?")){
+		
+			var name = $('#name').val(); 
+			var phone = $('#phone').val();
+			var id = $('#id').val();
+			var pwd = $('#pwd').val();
+			var pwd2 = $('#pwd2').val();
+			var email1 = $('#email1').val();
+			var email2 = $('#email2').val();
+			var regNoMasking = $('#regNoMasking').val();
+			var joinDate = $('#joinDate').val();
+			
+			if (name == "") { 
+				alert("이름을 입력해주세요."); 
+				$('#name').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (id == "") { 
+				alert("아이디를 입력해주세요."); 
+				$('#id').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (pwd == "") { 
+				alert("비밀번호를 입력해주세요."); 
+				$('#pwd').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (pwd2 == "" ) { 
+				alert("비밀번호 확인을 입력해주세요."); 
+				$('#pwd2').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if ( pwd != pwd2) { 
+				alert("비밀번호를 다시 재확인해주세요."); 
+				event.preventDefault(); 
+				return; 
+				} 
+			if (phone == "") { 
+				alert("핸드폰 번호를 입력해주세요."); 
+				$('#phone').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (regNoMasking == "") { 
+				alert("주민번호를 입력해주세요."); 
+				$('#regNoMasking').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (email1 == "") { 
+				alert("이메일 앞을 입력해주세요."); 
+				$('#email1').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (email2 == "") { 
+				alert("이메일 뒤를 입력해주세요."); 
+				$('#email2').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+			if (joinDate == "") { 
+				alert("입사일을 입력해주세요."); 
+				$('#joinDate').focus();
+				event.preventDefault(); 
+				return; 
+				} 
+		} else {
+			event.preventDefault(); 
+				return; 
+		}
+
+	}); 
+	
 	
 }) //end (document).ready
+
+
+
+
+
+
 
 
 /********************************************************

@@ -65,14 +65,14 @@ public class InsaVo {
 	
 	
 	//검색용 변수
-	private String search_sabun;
-	private String search_name;
-	private String search_join_gbn_code;
-	private String search_put_yn;
-	private String search_pos_gbn_code;
-	private String search_join_day;
-	private String search_retire_day;
-	private String search_job_type;
+	private String searchAgentNo;
+	private String searchName;
+	private String searchStatus;
+	private String searchPutYn;
+	private String searchPosition;
+	private String searchJobType;
+	private String searchJoinDate;
+	private String searchRetireDate;
 	
 	//페이징용 변수 8개
 	private int pageSize;    // 출력될 페이지 수. [1 2 3 4 5 6 7 8 9 10] 10개씩 또는 [ 1 2 3 4 5 ] 5개씩 보여주겠음
@@ -334,8 +334,7 @@ public class InsaVo {
 	}
 	
 	
-	@Override
-	public String toString() {
+	public String toStringVo() {
 		return "InsaVo [profileFileName=" + profileFileName + ", profileFile=" + profileFile + ", agentNo=" + agentNo
 				+ ", name=" + name + ", engName=" + engName + ", id=" + id + ", pwd=" + pwd + ", regNo=" + regNo
 				+ ", phone=" + phone + ", call=" + call + ", age=" + age + ", sex=" + sex + ", email1=" + email1
@@ -350,59 +349,59 @@ public class InsaVo {
 	}
 	
 	//검색용 변수
-	public String getSearch_sabun() {
-		return search_sabun;
+	public String getSearchAgentNo() {
+		return searchAgentNo;
 	}
-	public void setSearch_sabun(String search_sabun) {
-		this.search_sabun = search_sabun;
+	public void setSearchAgentNo(String searchAgentNo) {
+		this.searchAgentNo = searchAgentNo;
 	}
-	public String getSearch_name() {
-		return search_name;
+	public String getSearchName() {
+		return searchName;
 	}
-	public void setSearch_name(String search_name) {
-		this.search_name = search_name;
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
 	}
-	public String getSearch_join_gbn_code() {
-		return search_join_gbn_code;
+	public String getSearchStatus() {
+		return searchStatus;
 	}
-	public void setSearch_join_gbn_code(String search_join_gbn_code) {
-		this.search_join_gbn_code = search_join_gbn_code;
+	public void setSearchStatus(String searchStatus) {
+		this.searchStatus = searchStatus;
 	}
-	public String getSearch_put_yn() {
-		return search_put_yn;
+	public String getSearchPutYn() {
+		return searchPutYn;
 	}
-	public void setSearch_put_yn(String search_put_yn) {
-		this.search_put_yn = search_put_yn;
+	public void setSearchPutYn(String searchPutYn) {
+		this.searchPutYn = searchPutYn;
 	}
-	public String getSearch_pos_gbn_code() {
-		return search_pos_gbn_code;
+	public String getSearchPosition() {
+		return searchPosition;
 	}
-	public void setSearch_pos_gbn_code(String search_pos_gbn_code) {
-		this.search_pos_gbn_code = search_pos_gbn_code;
+	public void setSearchPosition(String searchPosition) {
+		this.searchPosition = searchPosition;
 	}
-	public String getSearch_join_day() {
-		return search_join_day;
+	public String getSearchJoinDate() {
+		return searchJoinDate;
 	}
-	public void setSearch_join_day(String search_join_day) {
-		this.search_join_day = search_join_day;
+	public void setSearchJoinDate(String searchJoinDate) {
+		this.searchJoinDate = searchJoinDate;
 	}
-	public String getSearch_retire_day() {
-		return search_retire_day;
+	public String getSearchRetireDate() {
+		return searchRetireDate;
 	}
-	public void setSearch_retire_day(String search_retire_day) {
-		this.search_retire_day = search_retire_day;
+	public void setSearchRetireDate(String searchRetireDate) {
+		this.searchRetireDate = searchRetireDate;
 	}
-	public String getSearch_job_type() {
-		return search_job_type;
+	public String getSearchJobType() {
+		return searchJobType;
 	}
-	public void setSearch_job_type(String search_job_type) {
-		this.search_job_type = search_job_type;
+	public void setSearchJobType(String searchJobType) {
+		this.searchJobType = searchJobType;
 	}
+	
 	public String toStringSearch() {
-		return "InsaSearchPagingVo [search_sabun=" + search_sabun + ", search_name=" + search_name
-				+ ", search_join_gbn_code=" + search_join_gbn_code + ", search_put_yn=" + search_put_yn
-				+ ", search_pos_gbn_code=" + search_pos_gbn_code + ", search_join_day=" + search_join_day
-				+ ", search_retire_day=" + search_retire_day + ", search_job_type=" + search_job_type + "]";
+		return "InsaVo [searchAgentNo=" + searchAgentNo + ", searchName=" + searchName + ", searchStatus=" + searchStatus
+				+ ", searchPutYn=" + searchPutYn + ", searchPosition=" + searchPosition + ", searchJoinDate="
+				+ searchJoinDate + ", searchRetireDate=" + searchRetireDate + ", searchJobType=" + searchJobType + "]";
 	}
 	
 	

@@ -37,7 +37,7 @@ public class ControllerView {
 		m.addAttribute("positionList", 					insaServiceImpl.positionList());		// 공통코드 직위
 		m.addAttribute("jobTypeList", 					insaServiceImpl.jobTypeList());			// 공통코드 직종
 		m.addAttribute("milYnList", 					insaServiceImpl.milYnList());			// 공통코드 입대여부
-		m.addAttribute("milTyoeList",					insaServiceImpl.milTyoeList());			// 공통코드 군별
+		m.addAttribute("milTypeList",					insaServiceImpl.milTypeList());			// 공통코드 군별
 		m.addAttribute("milLevelList",					insaServiceImpl.milLevelList());		// 공통코드 계급
 		m.addAttribute("kosaYnList",					insaServiceImpl.kosaYnList());			// 공통코드 kosa여부
 		m.addAttribute("kosaLevelList",					insaServiceImpl.kosaLevelList());		// 공통코드 kosa등급
