@@ -19,14 +19,23 @@
 
     <!-- Custom styles for this template -->
 <link href="css/input.css" rel="stylesheet">
-<!--
-*******************************************************
- * DESC : 직원 정보 조회 화면
- * AUTH : 박소영 (개발팀)
- * HIST : 20220220
-********************************************************
--->
+<link href="css/list.css" rel="stylesheet">
+<script src="js/list.js"></script>
+
+<script>
+function insaPageHref(i) {
+	//alert("1");
+	//alert( i );
+	$("#agentNo").val( i );
+	//alert( $("#agentNo").val() );
+	
+	$("form").attr("action", "insaPage.do");
+	$("form").submit();
+}
+</script>
+
 </head>
+
 <body class="d-flex h-100 bg-light">
 
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
@@ -44,30 +53,49 @@
 					<div class="row mb-3"><!-- 4개씩 1줄로 잡아주는 div -->
 						<label for="searchAgentNo" class="col-1 col-form-label">사번</label>
 						<div class="col-2">
-							<input type="text" class="form-control" id="searchAgentNo" name="searchAgentNo">
+							<input type="text" class="form-control" id="searchAgentNo" name="searchAgentNo" value="${searchVo.searchAgentNo}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength='10'>
 						</div>
 						
 						<label for="searchName" class="col-1 col-form-label">이름</label>
 						<div class="col-2">
-							<input type="text" class="form-control" id="searchName" name="searchName">
+							<input type="text" class="form-control" id="searchName" name="searchName" value="${searchVo.searchName}" onKeypress="hangul()" maxlength="5" >
 						</div>
+						
+						
 						
 						<label for="searchStatus" class="col-1 col-form-label">입사구분</label>
 						<div class="col-2">
-							<select class="form-select" id="searchStatus" name="searchStatus">
-								<option value="">선택</option>
-								<c:forEach var="a" items="${statusList}">
-									<option value="${a.name}">${a.name}</option>
-								</c:forEach>
+						
+							<select class="form-select"  name="searchStatus" id="searchStatus">
+							   <option value="">선택</option>
+							   <c:forEach var="a" items="${statusList}">
+							      <c:if test="${a.name eq searchVo.searchStatus}">
+							         <option value="${a.name}" selected="selected">${a.name}</option>
+							      </c:if>
+							      <c:if test="${a.name != searchVo.searchStatus}">
+							         <option value="${a.name}">${a.name}</option>
+							      </c:if>
+							   </c:forEach>
 							</select>
+							
 						</div>
+						
+						
 						<label for="searchPutYn" class="col-1 col-form-label">투입여부</label>
 						<div class="col-2">
 							<select class="form-select" id="searchPutYn" name="searchPutYn">
 								<option value="">선택</option>
-								<c:forEach var="a" items="${putYnList}">
-									<option value="${a.name}">${a.name}</option>
-								</c:forEach>
+		
+							   <c:forEach var="a" items="${statusList}">
+							      <c:if test="${a.name eq searchVo.searchPutYn}">
+							         <option value="${a.name}" selected="selected">${a.name}</option>
+							      </c:if>
+							      
+							      <c:if test="${a.name != searchVo.searchPutYn}">
+							         <option value="${a.name}">${a.name}</option>
+							      </c:if>
+							   </c:forEach>
+								
 							</select>
 						</div>
 						
@@ -78,9 +106,16 @@
 						<div class="col-2">
 							<select class="form-select" id="searchPosition" name="searchPosition">
 								<option value="">선택</option>
-								<c:forEach var="a" items="${positionList}">
-									<option value="${a.name}">${a.name}</option>
-								</c:forEach>
+								
+							   	<c:forEach var="a" items="${positionList}">
+									<c:if test="${a.name eq searchVo.searchPosition }">
+										<option value="${a.name}" selected="selected">${a.name}</option>
+									</c:if>
+								    <c:if test="${a.name != searchVo.searchPosition}">
+								       <option value="${a.name}">${a.name}</option>
+								    </c:if>
+							   </c:forEach>
+								
 							</select>
 						</div>
 						
@@ -96,12 +131,12 @@
 						
 						<label for="searchJoinDate" class="col-1 col-form-label">입사일</label>
 						<div class="col-2">
-						  <input type="date" class="form-control" id="searchJoinDate" name="searchJoinDate">
+						  <input type="date" class="form-control" id="searchJoinDate" name="searchJoinDate" value="${searchVo.searchJoinDate}">
 						</div>
 						
 						<label for="searchRetireDate" class="col-1 col-form-label">퇴사일</label>
 						<div class="col-2">
-						  <input type="date" class="form-control" id="searchRetireDate" name="searchRetireDate">
+						  <input type="date" class="form-control" id="searchRetireDate" name="searchRetireDate" value="${searchVo.searchRetireDate}">
 						</div>
 					</div>
 					
@@ -119,12 +154,12 @@
  * HIST : 20220220
 ********************************************************
 -->				<!-- start list result-->
-				<table class="table table-hover table-bordered">
+				<table class="table table-hover text-center table-bordered">
 				
 					<thead align="center">
 						<tr>
 							<td id="checkbox_width"></td>
-							<th id="sabun_width">사번</th>
+							<th id="agentNo_width">사번</th>
 							<th id="name_width">성명</th>
 							<th id="reg_width">주민번호</th>
 							<th id="hp_width">휴대폰</th>
@@ -140,9 +175,9 @@
 					<tbody>
 						<c:forEach var="insaList" items="${insaList}">
 							<tr>
-								<td><input type="checkbox" class="checkedSabun" value="${insaList.agentNo}" ></td>
+								<td><input type="checkbox" class="checkedAgentNo" value="${insaList.agentNo}" ></td>
 								<td><a href="#" id="insaPageHref" onclick="insaPageHref(${insaList.agentNo})"  value1="">${insaList.agentNo}</a></td>
-								<%--<a href="insaPage.do?agentNo=${insaList.sabun}" >${insaList.agentNo}</a> --%>
+								<%--<a href="insaPage.do?agentNo=${insaList.agentNo}" >${insaList.agentNo}</a> --%>
 								<td>${insaList.name}</td>
 								<td>${fn:substring (insaList.regNo, 0,fn:length(insaList.regNo)-6)}******</td>
 								<td>${fn:substring (insaList.phone, 0,fn:length(insaList.phone)-4)}****</td>
@@ -154,7 +189,7 @@
 								<td>
 									<fmt:parseDate value="${insaList.retireDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
 									<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"  />
-								<td>${insaList.put_yn}</td>
+								<td>${insaList.putYn}</td>
 								<td><fmt:parseNumber value="${insaList.salary}" var="salary" />
 									<fmt:formatNumber value="${salary }" pattern="#,###" />
 								</td>

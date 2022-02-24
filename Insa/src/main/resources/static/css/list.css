@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#checkbox_width {
+	width: 3%;
+}
+#agentNo_width {
+	width: 7%;
+}
+#name_width {
+	width: 7%;
+}
+#reg_width {
+	width: 12%;
+}
+#hp_width {
+	width: 10%;
+}
+#job_width {
+	width: 5%;
+}
+#join_width {
+	width: 12%;
+}
+#retire_width {
+	width: 12%;
+}
+#put_width {
+	width: 7%;
+}
+#sal_width {
+	width: 5%;
+}

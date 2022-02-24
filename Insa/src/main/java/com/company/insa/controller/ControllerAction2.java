@@ -26,6 +26,7 @@ public class ControllerAction2 {
 
 	@GetMapping("/list.do")
 	public String list(InsaVo vo, Model m) {
+		System.out.println(vo.getSearchAgentNo()); //검색변수 넘어오는지 확인용
 		
 		InsaVo searchVo = new InsaVo(); // 검색변수값 유지
 		if (vo != null) {
@@ -41,7 +42,7 @@ public class ControllerAction2 {
 		}
 		m.addAttribute("searchVo",searchVo); //검색값 유지
 		List<InsaVo> list = insaServiceImpl.list(vo);
-		System.out.println(list.toString());
+		//System.out.println(list.toString());
 		m.addAttribute("insaList",list);	 //검색결과 List
 		
 		/////////////////////////////////////////////////////페이징
@@ -83,12 +84,10 @@ public class ControllerAction2 {
 		m.addAttribute("paging",paging);
 		
 		
-		m.addAttribute("statusList", insaServiceImpl.statusList());
-		m.addAttribute("putYnList", insaServiceImpl.putYnList());
-		m.addAttribute("positionList", insaServiceImpl.positionList());
-		m.addAttribute("jobTypeList", insaServiceImpl.jobTypeList()); // 공통 코드 select
-		
-		
+		m.addAttribute("statusList", 					insaServiceImpl.statusList());			// 공통코드 입사여부
+		m.addAttribute("putYnList", 					insaServiceImpl.putYnList());			// 공통코드 투입여부
+		m.addAttribute("positionList", 					insaServiceImpl.positionList());		// 공통코드 직위
+		m.addAttribute("jobTypeList", 					insaServiceImpl.jobTypeList());			// 공통코드 직종
 		
 		return "insa/listForm";
 	}
