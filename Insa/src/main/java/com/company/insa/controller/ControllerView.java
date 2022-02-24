@@ -1,11 +1,16 @@
 package com.company.insa.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.company.insa.vo.InsaVo;
+
 
 @ControllerAdvice
 @Controller
@@ -55,8 +60,11 @@ public class ControllerView {
 		return "insa/listForm";
 	}
 	
-	@GetMapping("/INSA3.do") // 직원 정보 수정 화면이동
-	public String INSA3() {
+	@GetMapping("/insaPage.do") // 직원 정보 수정 화면이동
+	public String insaUpdateForm(InsaVo vo, Model m, HttpServletRequest request) throws Exception {
+		
+		
+		
 		return "insa/INSA3";
 	}
 

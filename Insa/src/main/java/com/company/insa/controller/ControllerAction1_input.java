@@ -21,7 +21,7 @@ import com.company.insa.vo.InsaVo;
 
 @ControllerAdvice
 @Controller
-public class ControllerAction1 {
+public class ControllerAction1_input {
 
 	@Autowired
 	InsaServiceImpl insaServiceImpl;

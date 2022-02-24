@@ -13,7 +13,7 @@ import com.company.insa.vo.InsaVo;
 
 @ControllerAdvice
 @Controller
-public class ControllerAction2 {
+public class ControllerAction2_list {
 
 	@Autowired
 	InsaServiceImpl insaServiceImpl;
