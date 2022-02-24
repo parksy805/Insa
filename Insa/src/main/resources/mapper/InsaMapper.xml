@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.company.insa.controller.InsaDao">
-
-
 	
-	
-	
-<!--
-*******************************************************
- * DESC : 직원 정보 저장
- * AUTH : 박소영 (개발팀)
- * HIST : 20220220
-********************************************************
--->
+<!--*******************************
+직원 등록
+**********************************-->
 	<!-- 사번 생성용 - 부서코드 호출 -->
 	<select id="getAgentNoDeptCode" parameterType="com.company.insa.vo.InsaComVo" resultType="string">
 		<![CDATA[
-			SELECT CODE FROM INSA.TB_INSA_COM WHERE NAME = #{name}
+			SELECT CODE FROM INSA.INSA_COM WHERE NAME = #{name}
 		 ]]>
 	</select>
 	<!-- 사번 생성용 - 시퀀스 호출 -->
@@ -26,36 +18,251 @@
 		]]>
 	</select>
 	
-	<insert id="agentInsert">
+	<select id="idCheck" resultType="int">
+		<![CDATA[ 
+		SELECT COUNT(*) FROM INSA.INSA WHERE id =#{id}
+		 ]]>
+	</select>
+	
+	<insert id="input">
 		<![CDATA[
-			INSERT INTO INSA.TB_INSA
-				(AGENTNO, NAME, ENGNAME, ID, PWD, REGNO, PHONE, CALL, 
-				AGE, SEX, EMAIL, ZIP, ADDR1, ADDR2, 
-				STATUS, DEPT, POSITION, JOBTYPE, 
-				GRDLEVEL, SALARY, JOINDATE, RETIREDATE, 
-				MILYN, MILTYPE, MILSTARTDATE, MILENDDATE, KOSAYN, KOSACLASS, 
-				BIZREGNO, BIZNAME, BIZREGIMGNAME, SELFINTRO, CARRIERIMGNAME, PROFILEIMGNAME)
-			VALUES
-				(#{agentNo}, #{name}, #{engName}, #{id}, #{pwd}, #{regNo}, #{phone}, #{call}, 
-				#{age}, #{sex}, #{email}, #{zip}, #{addr1}, #{addr2}, 
-				#{status}, #{dept}, #{position}, #{jotType}, 
-				#{grdLevel}, #{salary}, #{joinDate}, #{retireDate}, 
-				#{milYn}, #{milType}, #{milStartDate}, #{milEndDate}, #{kosaYn}, #{kosClass},  
-				#{bizRegNo}, #{bizName}, #{biaRegImgName}, #{selfIntro}, #{carrierImgName}, #{profileImgName})
+			INSERT INTO INSA.INSA
+				(agentNo, name, engName, id, pwd, 
+				regNo, phone, call, 
+				age, sex, email, 
+				zip, addr1, addr2, 
+				status, putYn, dept, position, jobType, salary, 
+				joinDate, retireDate, 
+				milYn, milType, milLevel, milStartDate, milEndDate, 
+				kosaYn, kosaLevel, grdLevel, 
+				cmpRegNo, cmp, cmpFileName, 
+				selfIntro, carrierFileName, profileFileName)
+			VALUES (#{agentNo}, #{name}, #{engName}, 
+				#{id}, #{pwd}, 
+				#{regNo}, #{phone}, #{call}, 
+				#{age}, #{sex}, #{email}, 
+				#{zip}, #{addr1}, #{addr2}, 
+				#{status}, #{putYn}, #{dept}, #{position}, #{jobType}, #{salary}, 
+				#{joinDate}, #{retireDate}, 
+				#{milYn}, #{milType}, #{milLevel}, #{milStartDate}, #{milEndDate},
+				#{kosaYn}, #{kosaLevel}, #{grdLevel}, 
+				#{cmpRegNo}, #{cmp}, #{cmpFileName}, 
+				#{selfIntro}, #{carrierFileName}, #{profileFileName})
 		]]>
 	</insert>
 	
+<!--*******************************
+직원 검색 조회
+**********************************-->
+<select id="list" parameterType="com.company.insa.vo.InsaVo" resultType="com.company.insa.vo.InsaVo">
+		<![CDATA[
+			SELECT rownum, K2.* 
+			FROM (SELECT rownum as rnum, K1.* 
+				FROM (SELECT * 
+				FROM insa WHERE 1=1 
+					]]>
+				<if test='search_sabun != ""'>
+			    <![CDATA[  
+			    	AND sabun LIKE'%' || #{search_sabun} || '%' 
+			    ]]>
+				</if>
+		
+				<if test='search_name != ""'>
+			    <![CDATA[  
+			    	AND name LIKE'%' || #{search_name} || '%' 
+			    ]]>
+				</if>
+		
+				<if test='search_join_gbn_code != ""'>
+			    <![CDATA[  
+			    	AND join_gbn_code = #{search_join_gbn_code}
+			    ]]>
+				</if>
+		
+				<if test='search_put_yn != ""'>
+			    <![CDATA[  
+			    	AND put_yn = #{search_put_yn} 
+			    ]]>
+				</if>
+		
+				<if test='search_pos_gbn_code != ""'>
+			    <![CDATA[  
+			    	AND pos_gbn_code = #{search_pos_gbn_code} 
+			    ]]>
+				</if>
+		
+				<if test='search_join_day != ""'>
+			    <![CDATA[  
+			    	AND join_day = #{search_join_day} 
+			    ]]>
+				</if>
+		
+				<if test='search_retire_day != ""'>
+			    <![CDATA[  
+			    	AND retire_day = #{search_retire_day} 
+			    ]]>
+				</if>
+		
+				<if test='search_job_type != ""'>
+			    <![CDATA[  
+			    	AND job_type = #{search_job_type}
+			    ]]>
+				</if>
+		<![CDATA[
+					ORDER BY sabun DESC) K1 
+			WHERE rownum <= #{nowRecord}+9) K2 
+		WHERE rnum >= #{nowRecord}
+		]]>
+	</select>
 	
+	
+	
+<!--*******************************
+직원 수정
+**********************************-->
+	<update id="insaUpdate" parameterType="com.company.insa.vo.InsaVo">
+		<![CDATA[
+			UPDATE insa SET 
+				name=#{name},
+				eng_name=#{eng_name},	
+				pwd=#{pwd},
+				phone=#{phone},
+				hp=#{hp}, 
+				reg_no=#{reg_no}, 
+				years=#{years}, 
+				email=#{email}, 
+				job_type=#{job_type},
+				sex=#{sex}, 
+				zip=#{zip}, 
+				addr1=#{addr1}, 
+				addr2=#{addr2},
+				pos_gbn_code=#{pos_gbn_code}, 
+				dept_code=#{dept_code}, 
+				salary=#{salary},
+				join_gbn_code=#{join_gbn_code},	
+				gart_level=#{gart_level}, 
+				put_yn=#{put_yn},
+				mil_yn=#{mil_yn}, 
+				mil_type=#{mil_type},	
+				mil_level=#{mil_level},	
+				mil_startdate=#{mil_startdate},	
+				mil_enddate=#{mil_enddate},
+				cmp_reg_no=#{cmp_reg_no}, 
+				crm_name=#{crm_name},	
+				self_intro=#{self_intro},
+				profile=#{profile},
+				cmp_reg_img=#{cmp_reg_img},
+				carrier=#{carrier}
+			
+			WHERE sabun=#{sabun}
+		]]>
+	</update>
+	
+<!--*******************************
+직원 삭제
+**********************************-->
+	<delete id="insaDeleteByAgentNo" parameterType="com.company.insa.vo.InsaVo">
+		<![CDATA[
+		DELETE FROM insa WHERE sabun=#{sabun}
+		]]>
+	</delete>
+	
+	
+<!--*******************************
+사번으로 사진파일명 가져오기
+**********************************-->
+	<select id="getProfileFileNameByAgentNo" resultType="String">
+	<![CDATA[
+		SELECT profile FROM insa WHERE sabun=#{sabun}
+	]]>
+	</select>
+
+	<select id="getCmpFileNameByAgentNo" resultType="String">
+	<![CDATA[
+		SELECT cmp_reg_img FROM insa WHERE sabun=#{sabun}
+	]]>
+	</select>
+	
+	<select id="getCarrierFileNameByAgentNo" resultType="String">
+	<![CDATA[
+	SELECT carrier FROM insa WHERE sabun=#{sabun}
+	]]>
+	</select>
+	
+	
+<!--*******************************
+페이징 관련 함수
+**********************************-->
+
+<!-- 	<select id="getTotalRecord"	parameterType="com.company.insa.vo.InsaVo" resultType="Int">
+		<![CDATA[
+			SELECT count(*) FROM insa WHERE 1 = 1
+		]]>
+		<if test='search_sabun != ""'>
+		<![CDATA[  
+	    	AND sabun LIKE'%' || #{search_sabun} || '%' 
+	    ]]>
+		</if>
+
+		<if test='search_name != ""'>
+	    <![CDATA[  
+	    	AND name LIKE'%' || #{search_name} || '%' 
+	    ]]>
+		</if>
+
+		<if test='search_join_gbn_code != ""'>
+	    <![CDATA[  
+	    	AND join_gbn_code = #{search_join_gbn_code}
+	    ]]>
+		</if>
+
+		<if test='search_put_yn != ""'>
+	    <![CDATA[  
+	    	AND put_yn = #{search_put_yn} 
+	    ]]>
+		</if>
+
+		<if test='search_pos_gbn_code != ""'>
+	    <![CDATA[  
+	    	AND pos_gbn_code = #{search_pos_gbn_code} 
+	    ]]>
+		</if>
+
+		<if test='search_join_day != ""'>
+	    <![CDATA[  
+	    	AND join_day = #{search_join_day} 
+	    ]]>
+		</if>
+
+		<if test='search_retire_day != ""'>
+	    <![CDATA[  
+	    	AND retire_day = #{search_retire_day} 
+	    ]]>
+		</if>
+
+		<if test='search_job_type != ""'>
+	    <![CDATA[  
+	    	AND job_type = #{search_job_type}
+	    ]]>
+		</if>
+	</select>
+
+	<select id="insaPage" parameterType="string" resultType="com.company.insa.vo.InsaVo">
+		<![CDATA[ 
+		SELECT * FROM insa WHERE sabun =#{sabun}
+		 ]]>
+	</select> -->
 	
 	
 	
 	
 	
 	<!-- DB 연결 test용 -->
-	<select id="testfn" resultType="string">
+<!-- 	<select id="testfn" resultType="string">
 		<![CDATA[
-			SELECT COUNT(*) FROM INSA.TB_INSA_COM
+			SELECT COUNT(*) FROM INSA.INSA_COM
 		]]>
-	</select>
+	</select> -->
+	
 </mapper>
 

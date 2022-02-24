@@ -3,75 +3,90 @@
 <mapper namespace="com.company.insa.controller.InsaDao">
 
 
-
-
-
-
 	<!-- 공통코드 List -->
-	<select id="status" resultType="com.company.insa.vo.InsaComVo">
+	<select id="sexList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='01'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='01'
+		]]>
 	</select>
 	
-	<select id="sex" resultType="com.company.insa.vo.InsaComVo">
+	<select id="emailList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='02'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='02'
+		]]>
 	</select>
 	
-	<select id="email" resultType="com.company.insa.vo.InsaComVo">
+	<select id="statusList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='03'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='03'
+		]]>
 	</select>
 	
-	<select id="dept" resultType="com.company.insa.vo.InsaComVo">
+	<select id="putYnList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='04'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='04'
+		]]>
 	</select>
 	
-	<select id="position" resultType="com.company.insa.vo.InsaComVo">
+	
+	
+	<select id="deptList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='05'
-		]]> 
+			SELECT name,code FROM insa_com WHERE gubun='05' 
+		]]>
 	</select>
 	
-	<select id="jobType" resultType="com.company.insa.vo.InsaComVo">
+	<select id="positionList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='06'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='06'
+		]]>
 	</select>
 	
-	<select id="milYn" resultType="com.company.insa.vo.InsaComVo">
+	<select id="jobTypeList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='07'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='07'
+		]]>
 	</select>
+	
 
-	<select id="milType" resultType="com.company.insa.vo.InsaComVo">
+
+
+
+	
+	<select id="milYnList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='08'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='08'
+		]]>
 	</select>
 	
-	<select id="grdLevel" resultType="com.company.insa.vo.InsaComVo">
+	<select id="milTyoeList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='09'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='09'
+		]]>
 	</select>
 	
-	<select id="kosaYn" resultType="com.company.insa.vo.InsaComVo">
+	<select id="milLevelList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='10'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='10'
+		]]>
 	</select>
 	
-	<select id="kosClass" resultType="com.company.insa.vo.InsaComVo">
+	<select id="kosaYnList" resultType="com.company.insa.vo.InsaComVo">
 		<![CDATA[
-			SELECT NAME FROM INSA.TB_INSA_COM WHERE GUBUN='11'
-		]]> 
+			SELECT name FROM insa_com WHERE gubun='11'
+		]]>
+	</select>
+	 
+	<select id="kosaLevelList" resultType="com.company.insa.vo.InsaComVo">
+		<![CDATA[
+			SELECT name FROM insa_com WHERE gubun='12'
+		]]>
+	</select>
+	
+	<select id="grdLevelList" resultType="com.company.insa.vo.InsaComVo">
+		<![CDATA[
+			SELECT name FROM insa_com WHERE gubun='13'
+		]]>
 	</select>
 	
 </mapper>

@@ -36,84 +36,141 @@ public class InsaServiceImpl implements InsaService{
 		// TODO Auto-generated method stub
 		return insaDao.getSeqAgentNo();
 	}
+	
 	@Override
-	public void agentInsert(InsaVo vo) {				// 저장
-		// TODO Auto-generated method stub
-		insaDao.agentInsert(vo);
-	}
-
-
-
-//	*******************************************************
-//	 * DESC : 직원 정보 공통코드
-//	 * AUTH : 박소영 (개발팀)
-//	 * HIST : 20220220
-//	********************************************************
-	@Override
-	public List<InsaComVo> status() {
-		// TODO Auto-generated method stub
-		return insaDao.status();
-	}
-
-	@Override
-	public List<InsaComVo> sex() {
-		// TODO Auto-generated method stub
-		return insaDao.sex();
-	}
-
-	@Override
-	public List<InsaComVo> email() {
-		// TODO Auto-generated method stub
-		return insaDao.email();
-	}
-
-	@Override
-	public List<InsaComVo> dept() {
-		// TODO Auto-generated method stub
-		return insaDao.dept();
+	public int idCheck(String id) {						// id 중복체크
+		return insaDao.idCheck(id);
 	}
 	
 	@Override
-	public List<InsaComVo> position() {
+	public void input(InsaVo vo) {						// 저장
 		// TODO Auto-generated method stub
-		return insaDao.position();
+		insaDao.input(vo);
 	}
-	
+
+	// *********************************************************
+	// * 직원 검색 조회
+	// *********************************************************
+
 	@Override
-	public List<InsaComVo> jobType() {
-		// TODO Auto-generated method stub
-		return insaDao.jobType();
+	public List<InsaVo> insaList(InsaVo vo) {
+		return insaDao.insaList(vo);
+	}
+
+	// *********************************************************
+	// * 직원 수정
+	// *********************************************************
+	@Override
+	public void insaUpdate(InsaVo vo) {
+		insaDao.insaUpdate(vo);
+	}
+
+	// *********************************************************
+	// * 직원 삭제
+	// *********************************************************
+	@Override
+	public int insaDeleteByAgentNo(String agentNo) {
+		return insaDao.insaDeleteByAgentNo(agentNo);
+	}
+
+	// *********************************************************
+	// * 사번으로 사진파일명 가져오기
+	// *********************************************************
+	@Override
+	public String getProfileFileNameByAgentNo(String sabun) {
+		return insaDao.getProfileFileNameByAgentNo(sabun);
 	}
 
 	@Override
-	public List<InsaComVo> milYn() {
-		// TODO Auto-generated method stub
-		return insaDao.milYn();
+	public String getCmpFileNameByAgentNo(String sabun) {
+		return insaDao.getCmpFileNameByAgentNo(sabun);
 	}
 
 	@Override
-	public List<InsaComVo> milType() {
+	public String getCarrierFileNameByAgentNo(String sabun) {
+		return insaDao.getCarrierFileNameByAgentNo(sabun);
+	}
+
+	// *********************************************************
+	// * 페이징 관련 함수
+	// *********************************************************
+
+	@Override
+	public int getTotalRecord(InsaVo vo) { 
 		// TODO Auto-generated method stub
-		return insaDao.milType();
+		return insaDao.getTotalRecord(vo);
+	}
+	@Override
+	public InsaVo insaPage(String sabun) {
+		return insaDao.insaPage(sabun);
+	}
+
+	// *********************************************************
+	// * 공통코드
+	// *********************************************************
+	@Override
+	public List<InsaComVo> sexList() {
+		return insaDao.sexList();
 	}
 
 	@Override
-	public List<InsaComVo> grdLevel() {
-		// TODO Auto-generated method stub
-		return insaDao.grdLevel();
+	public List<InsaComVo> emailList() {
+		return insaDao.emailList();
 	}
 
 	@Override
-	public List<InsaComVo> kosaYn() {
-		// TODO Auto-generated method stub
-		return insaDao.kosaYn();
+	public List<InsaComVo> statusList() {
+		return insaDao.statusList();
 	}
 
 	@Override
-	public List<InsaComVo> kosClass() {
-		// TODO Auto-generated method stub
-		return insaDao.kosClass();
+	public List<InsaComVo> putYnList() {
+		return insaDao.putYnList();
 	}
 
+	@Override
+	public List<InsaComVo> deptList() {
+		return insaDao.deptList();
+	}
+
+	@Override
+	public List<InsaComVo> positionList() {
+		return insaDao.positionList();
+	}
+
+	@Override
+	public List<InsaComVo> jobTypeList() {
+		return insaDao.jobTypeList();
+	}
+
+	@Override
+	public List<InsaComVo> milYnList() {
+		return insaDao.milYnList();
+	}
+
+	@Override
+	public List<InsaComVo> milTyoeList() {
+		return insaDao.milTyoeList();
+	}
+
+	@Override
+	public List<InsaComVo> milLevelList() {
+		return insaDao.milLevelList();
+	}
+
+	@Override
+	public List<InsaComVo> kosaYnList() {
+		return insaDao.kosaYnList();
+	}
+
+	@Override
+	public List<InsaComVo> kosaLevelList() {
+		return insaDao.kosaLevelList();
+	}
+
+	@Override
+	public List<InsaComVo> grdLevelList() {
+		return insaDao.grdLevelList();
+	}
 
 }

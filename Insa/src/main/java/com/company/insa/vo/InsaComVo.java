@@ -2,12 +2,12 @@ package com.company.insa.vo;
 
 public class InsaComVo {
 	
+	
 //	*******************************************************
 //	 * DESC : 직원 정보 공통함수 전역 변수
 //	 * AUTH : 박소영 (개발팀)
 //	 * HIST : 20220220
 //	********************************************************
-	
 	private String gubun;
 	private String code;
 	private String name;
@@ -37,13 +37,11 @@ public class InsaComVo {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
 	@Override
 	public String toString() {
-		return "InsaComVo [gubun=" + gubun + ", code=" + code + ", name=" + name + ", note=" + note + ", getGubun()="
-				+ getGubun() + ", getCode()=" + getCode() + ", getName()=" + getName() + ", getNote()=" + getNote()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "InsaComVO [gubun=" + gubun + ", code=" + code + ", name=" + name + ", note=" + note + "]";
 	}
 	
+	
+
 }

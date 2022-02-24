@@ -21,15 +21,15 @@
 <body class="d-flex h-100 text-center text-white bg-dark">
 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	<jsp:include page="/WEB-INF/view/include/header.jsp" />
+	<jsp:include page="/WEB-INF/view/include/header_index.jsp" />
 
 	<main class="px-3">
 	  <h1>인사 시스템</h1>
 	  <p class="lead">
-	    <a href="INSA1.do" class="btn btn-lg btn-secondary fw-bold border-white bg-white">직원 등록</a>
+	    <a href="inputForm.do" class="btn btn-lg btn-secondary fw-bold border-white bg-white">직원 등록</a>
 	  </p>
 	  <p class="lead">
-	    <a href="INSA2.do" class="btn btn-lg btn-secondary fw-bold border-white bg-white">직원 조회</a>
+	    <a href="listForm.do" class="btn btn-lg btn-secondary fw-bold border-white bg-white">직원 조회</a>
 	  </p>
 	  <p class="lead">
 	    <a href="test.do" class="btn btn-lg btn-secondary fw-bold border-white bg-white">test (나중에 삭제)</a>

@@ -9,49 +9,95 @@ public class InsaVo {
 //	 * AUTH : 박소영 (개발팀)
 //	 * HIST : 20220220
 //	********************************************************
+	private String agentNo;					// 사번
+	private String name;					// 이름
+	private String engName;					// 영문이름
+
+	private String id;						// 아이디
+	private String pwd;						// 비밀번호
 	
-	private String agentNo;					//사번*
-	private String name;					//이름*
-	private String engName;					//영어이름
-	private String id;						//아이디*
-	private String pwd;						//비밀번호*
-	private String regNo;					//주민번호*
-	private String phone;					//휴대폰*
-	private String call;					//전화번호
-	private String age;						//나이
-	private String sex;						//성별
-	private String email1;					//이메일 앞*
-   	private String email2;					//이메일 뒤*
-   	private String email;					//이메일
-   	private String zip;						//우편번호
-	private String addr1;					//도로명주소
-	private String addr2;					//상세주소
-	private String status;					//입사구분
-	private String dept;					//부서
-	private String position;				//직위
-    private String jotType;					//직종
-   	private String grdLevel;				//최종학력
-	private String salary;					//연봉
-	private String joinDate;				//입사일*
-	private String retireDate;				//퇴사일
-	private String milYn;					//입대여부
-  	private String milType;					//군별
-   	private String milStartDate;			//입대일
-   	private String milEndDate;				//제대일
-	private String kosaYn;					//kosa여부
-	private String kosClass;				//kosa등급
-	private String bizRegNo;				//사업자등록번호
-	private String bizName;					//사업자업체명
-	private String biaRegImgName;			//사업자등록증 파일명
-	private String selfIntro;				//자기소개
-	private String carrierImgName;			//이력서 파일명
-	private String profileImgName;			//증명사진 파일명
-	private MultipartFile profileImg;		//증명사진 업로드파일
-	private MultipartFile bizRegImg;		//사업자등록증 업로드파일
-	private MultipartFile carrierImg;		//이력서 업로드파일
+	private String regNo;					// 주민번호
+	private String phone;					// 휴대폰
+	private String call;					// 전화번호
 	
-	//getter,setter,toString생성
+	private String age;						// 나이
+	private String sex;						// 성별
+	private String email1;					// 이메일1
+	private String email2;					// 이메일2
+	private String email;					// 이메일
 	
+	private String zip;						// 우편번호
+	private String addr1;					// 주소1
+	private String addr2;					// 주소2
+
+	private String status;					// 입사여부 asis: join_gbn_code
+	private String putYn;					// 투입여부
+	private String dept;					// 부서
+	private String position;				// 직위
+
+	private String jobType;					// 직종
+	private String salary;					// 연봉
+	private String joinDate;				// 입사일
+	private String retireDate;				// 퇴사일
+
+	private String milYn;					// 군필여부
+	private String milType;					// 군별
+	private String milLevel;				// 계급
+	private String milStartDate;			// 입영일
+	private String milEndDate;				// 전역일
+
+	private String kosaYn;					// KOSA등록
+	private String kosaLevel;				// KOSA등급
+	private String grdLevel;				// 등급(최종학력)
+
+	private String cmpRegNo;				// 사업자번호
+	private String cmp;						// 사업자명
+	private String cmpFileName; 			// 사업자등록증 파일명
+	private MultipartFile cmpFile;			// 사업자등록증 이미지 파일 server(프로젝트)에 저장
+	
+	
+	private String selfIntro;				// 자기소개
+	private String carrierFileName; 		// 이력서 파일명
+	private MultipartFile carrierFile; 		// 이력서 이미지 파일 server(프로젝트)에 저장
+	
+	private String profileFileName; 		// 프로필 파일명
+	private MultipartFile profileFile;		// 프로필 파일 server(프로젝트)에 저장
+	
+	
+	//검색용 변수
+	private String search_sabun;
+	private String search_name;
+	private String search_join_gbn_code;
+	private String search_put_yn;
+	private String search_pos_gbn_code;
+	private String search_join_day;
+	private String search_retire_day;
+	private String search_job_type;
+	
+	//페이징용 변수 8개
+	private int pageSize;    // 출력될 페이지 수. [1 2 3 4 5 6 7 8 9 10] 10개씩 또는 [ 1 2 3 4 5 ] 5개씩 보여주겠음
+	private int listSize;    // 한 페이지에 보여줄 DB의 레코드 수.
+	private int totalRecord; // DB rownum된 [index=1 ~ index=마지막까지]의 총 "갯수". 데이터List가 아님 그냥 갯수임
+	private int totalPage;	// totalRecord를 바탕으로 [1 2 3 4 5 6 7 8 9 10 11 12 13]까지 나올지 아닐지 결정
+	private int nowRecord;   // DB rownum됐을때 index=1,11,21... 어디쯤 레코드인지
+	private int nowPage;	// 현재 페이지. [ 1 "2" 3 4 5 6 7 8 9 10 ] <= 현재 페이지:2
+	private int startPage;	// 
+	private int endPage;
+	
+	
+	
+	public String getProfileFileName() {
+		return profileFileName;
+	}
+	public void setProfileFileName(String profileFileName) {
+		this.profileFileName = profileFileName;
+	}
+	public MultipartFile getProfileFile() {
+		return profileFile;
+	}
+	public void setProfileFile(MultipartFile profileFile) {
+		this.profileFile = profileFile;
+	}
 	public String getAgentNo() {
 		return agentNo;
 	}
@@ -124,6 +170,12 @@ public class InsaVo {
 	public void setEmail2(String email2) {
 		this.email2 = email2;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getZip() {
 		return zip;
 	}
@@ -148,6 +200,12 @@ public class InsaVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getPutYn() {
+		return putYn;
+	}
+	public void setPutYn(String putYn) {
+		this.putYn = putYn;
+	}
 	public String getDept() {
 		return dept;
 	}
@@ -160,17 +218,11 @@ public class InsaVo {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public String getJotType() {
-		return jotType;
+	public String getJobType() {
+		return jobType;
 	}
-	public void setJotType(String jotType) {
-		this.jotType = jotType;
-	}
-	public String getGrdLevel() {
-		return grdLevel;
-	}
-	public void setGrdLevel(String grdLevel) {
-		this.grdLevel = grdLevel;
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
 	}
 	public String getSalary() {
 		return salary;
@@ -202,6 +254,12 @@ public class InsaVo {
 	public void setMilType(String milType) {
 		this.milType = milType;
 	}
+	public String getMilLevel() {
+		return milLevel;
+	}
+	public void setMilLevel(String milLevel) {
+		this.milLevel = milLevel;
+	}
 	public String getMilStartDate() {
 		return milStartDate;
 	}
@@ -220,29 +278,41 @@ public class InsaVo {
 	public void setKosaYn(String kosaYn) {
 		this.kosaYn = kosaYn;
 	}
-	public String getKosClass() {
-		return kosClass;
+	public String getKosaLevel() {
+		return kosaLevel;
 	}
-	public void setKosClass(String kosClass) {
-		this.kosClass = kosClass;
+	public void setKosaLevel(String kosaLevel) {
+		this.kosaLevel = kosaLevel;
 	}
-	public String getBizRegNo() {
-		return bizRegNo;
+	public String getGrdLevel() {
+		return grdLevel;
 	}
-	public void setBizRegNo(String bizRegNo) {
-		this.bizRegNo = bizRegNo;
+	public void setGrdLevel(String grdLevel) {
+		this.grdLevel = grdLevel;
 	}
-	public String getBizName() {
-		return bizName;
+	public String getCmpRegNo() {
+		return cmpRegNo;
 	}
-	public void setBizName(String bizName) {
-		this.bizName = bizName;
+	public void setCmpRegNo(String cmpRegNo) {
+		this.cmpRegNo = cmpRegNo;
 	}
-	public String getBiaRegImgName() {
-		return biaRegImgName;
+	public String getCmp() {
+		return cmp;
 	}
-	public void setBiaRegImgName(String biaRegImgName) {
-		this.biaRegImgName = biaRegImgName;
+	public void setCmp(String cmp) {
+		this.cmp = cmp;
+	}
+	public String getCmpFileName() {
+		return cmpFileName;
+	}
+	public void setCmpFileName(String cmpFileName) {
+		this.cmpFileName = cmpFileName;
+	}
+	public MultipartFile getCmpFile() {
+		return cmpFile;
+	}
+	public void setCmpFile(MultipartFile cmpFile) {
+		this.cmpFile = cmpFile;
 	}
 	public String getSelfIntro() {
 		return selfIntro;
@@ -250,54 +320,148 @@ public class InsaVo {
 	public void setSelfIntro(String selfIntro) {
 		this.selfIntro = selfIntro;
 	}
-	public String getCarrierImgName() {
-		return carrierImgName;
+	public String getCarrierFileName() {
+		return carrierFileName;
 	}
-	public void setCarrierImgName(String carrierImgName) {
-		this.carrierImgName = carrierImgName;
+	public void setCarrierFileName(String carrierFileName) {
+		this.carrierFileName = carrierFileName;
 	}
-	public String getProfileImgName() {
-		return profileImgName;
+	public MultipartFile getCarrierFile() {
+		return carrierFile;
 	}
-	public void setProfileImgName(String profileImgName) {
-		this.profileImgName = profileImgName;
-	}
-	public MultipartFile getProfileImg() {
-		return profileImg;
-	}
-	public void setProfileImg(MultipartFile profileImg) {
-		this.profileImg = profileImg;
-	}
-	public MultipartFile getcarrierImg() {
-		return carrierImg;
-	}
-	public void setcarrierImg(MultipartFile carrierImg) {
-		this.carrierImg = carrierImg;
-	}
-	public MultipartFile getBizRegImg() {
-		return bizRegImg;
-	}
-	public void setBizRegImg(MultipartFile bizRegImg) {
-		this.bizRegImg = bizRegImg;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	@Override
-	public String toString() {
-		return "InsaVo [agentNo=" + agentNo + ", name=" + name + ", engName=" + engName + ", id=" + id + ", pwd=" + pwd
-				+ ", regNo=" + regNo + ", phone=" + phone + ", call=" + call + ", age=" + age + ", sex=" + sex
-				+ ", email1=" + email1 + ", email2=" + email2 + ", email=" + email + ", zip=" + zip + ", addr1=" + addr1
-				+ ", addr2=" + addr2 + ", status=" + status + ", dept=" + dept + ", position=" + position + ", jotType="
-				+ jotType + ", grdLevel=" + grdLevel + ", salary=" + salary + ", joinDate=" + joinDate + ", retireDate="
-				+ retireDate + ", milYn=" + milYn + ", milType=" + milType + ", milStartDate=" + milStartDate
-				+ ", milEndDate=" + milEndDate + ", kosaYn=" + kosaYn + ", kosClass=" + kosClass + ", bizRegNo="
-				+ bizRegNo + ", bizName=" + bizName + ", biaRegImgName=" + biaRegImgName + ", selfIntro=" + selfIntro
-				+ ", carrierImgName=" + carrierImgName + ", profileImgName=" + profileImgName + ", profileImg="
-				+ profileImg + ", carrierImg=" + carrierImg + ", bizRegImg=" + bizRegImg + "]";
+	public void setCarrierFile(MultipartFile carrierFile) {
+		this.carrierFile = carrierFile;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "InsaVo [profileFileName=" + profileFileName + ", profileFile=" + profileFile + ", agentNo=" + agentNo
+				+ ", name=" + name + ", engName=" + engName + ", id=" + id + ", pwd=" + pwd + ", regNo=" + regNo
+				+ ", phone=" + phone + ", call=" + call + ", age=" + age + ", sex=" + sex + ", email1=" + email1
+				+ ", email2=" + email2 + ", email=" + email + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", status=" + status + ", putYn=" + putYn + ", dept=" + dept + ", position=" + position + ", jobType="
+				+ jobType + ", salary=" + salary + ", joinDate=" + joinDate + ", retireDate=" + retireDate + ", milYn="
+				+ milYn + ", milType=" + milType + ", milLevel=" + milLevel + ", milStartDate=" + milStartDate
+				+ ", milEndDate=" + milEndDate + ", kosaYn=" + kosaYn + ", kosaLevel=" + kosaLevel + ", grdLevel="
+				+ grdLevel + ", cmpRegNo=" + cmpRegNo + ", cmp=" + cmp + ", cmpFileName=" + cmpFileName + ", cmpFile="
+				+ cmpFile + ", selfIntro=" + selfIntro + ", carrierFileName=" + carrierFileName + ", carrierFile="
+				+ carrierFile + "]";
+	}
+	
+	//검색용 변수
+	public String getSearch_sabun() {
+		return search_sabun;
+	}
+	public void setSearch_sabun(String search_sabun) {
+		this.search_sabun = search_sabun;
+	}
+	public String getSearch_name() {
+		return search_name;
+	}
+	public void setSearch_name(String search_name) {
+		this.search_name = search_name;
+	}
+	public String getSearch_join_gbn_code() {
+		return search_join_gbn_code;
+	}
+	public void setSearch_join_gbn_code(String search_join_gbn_code) {
+		this.search_join_gbn_code = search_join_gbn_code;
+	}
+	public String getSearch_put_yn() {
+		return search_put_yn;
+	}
+	public void setSearch_put_yn(String search_put_yn) {
+		this.search_put_yn = search_put_yn;
+	}
+	public String getSearch_pos_gbn_code() {
+		return search_pos_gbn_code;
+	}
+	public void setSearch_pos_gbn_code(String search_pos_gbn_code) {
+		this.search_pos_gbn_code = search_pos_gbn_code;
+	}
+	public String getSearch_join_day() {
+		return search_join_day;
+	}
+	public void setSearch_join_day(String search_join_day) {
+		this.search_join_day = search_join_day;
+	}
+	public String getSearch_retire_day() {
+		return search_retire_day;
+	}
+	public void setSearch_retire_day(String search_retire_day) {
+		this.search_retire_day = search_retire_day;
+	}
+	public String getSearch_job_type() {
+		return search_job_type;
+	}
+	public void setSearch_job_type(String search_job_type) {
+		this.search_job_type = search_job_type;
+	}
+	public String toStringSearch() {
+		return "InsaSearchPagingVo [search_sabun=" + search_sabun + ", search_name=" + search_name
+				+ ", search_join_gbn_code=" + search_join_gbn_code + ", search_put_yn=" + search_put_yn
+				+ ", search_pos_gbn_code=" + search_pos_gbn_code + ", search_join_day=" + search_join_day
+				+ ", search_retire_day=" + search_retire_day + ", search_job_type=" + search_job_type + "]";
+	}
+	
+	
+	//페이징용 변수 8개
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getListSize() {
+		return listSize;
+	}
+	public void setListSize(int listSize) {
+		this.listSize = listSize;
+	}
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+	public void setTotalRecord(int totalRecord) {
+		this.totalRecord = totalRecord;
+	}
+	public int getTotalPage() {
+		return totalPage;
+	}
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
+	public int getNowRecord() {
+		return nowRecord;
+	}
+	public void setNowRecord(int nowRecord) {
+		this.nowRecord = nowRecord;
+	}
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+	public int getStartPage() {
+		return startPage;
+	}
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+	public int getEndPage() {
+		return endPage;
+	}
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+	
+	public String toStringPaging() {
+		return "InsaSearchPagingVo [pageSize=" + pageSize + ", listSize=" + listSize + ", totalRecord=" + totalRecord
+				+ ", totalPage=" + totalPage + ", nowRecord=" + nowRecord + ", nowPage=" + nowPage + ", startPage="
+				+ startPage + ", endPage=" + endPage + "]";
+	}
+		
+		
+
 }
